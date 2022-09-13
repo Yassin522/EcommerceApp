@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:ecommerce/models/Product.dart';
 import 'package:ecommerce/screens/details/details_screen.dart';
+import 'package:get/get.dart';
 
 import '../constants.dart';
 import '../size_config.dart';
@@ -25,11 +26,14 @@ class ProductCard extends StatelessWidget {
       child: SizedBox(
         width: getProportionateScreenWidth(width),
         child: GestureDetector(
-          onTap: () => Navigator.pushNamed(
+          onTap: (){
+          Get.to(()=>DetailsScreen(), arguments: ProductDetailsArguments(product: product));
+          },
+          /*Navigator.pushNamed(
             context,
             DetailsScreen.routeName,
             arguments: ProductDetailsArguments(product: product),
-          ),
+          ),*/
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -43,14 +47,14 @@ class ProductCard extends StatelessWidget {
                   ),
                   child: Hero(
                     tag: product.id.toString(),
-                    child: Image(image: NetworkImage('http://192.168.43.86:8000/upload/product/${product.images}'), fit: BoxFit.cover,),
+                    child: Image(image: NetworkImage('http://192.168.43.86:8000/upload/product/${product.image}'), fit: BoxFit.cover,),
                   ),
                 ),
               ),
               const SizedBox(height: 10),
               Center(
                 child: Text(
-                  product.name,
+                  product.name!,
                   style: TextStyle(color: Colors.black),
                   maxLines: 2,
                 ),

@@ -1,8 +1,15 @@
+import 'package:ecommerce/Controller/CartController/HomeController/homeController.dart';
+import 'package:ecommerce/models/product_color.dart';
+import 'package:ecommerce/screens/details/details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/models/Product.dart';
+import 'package:get/get.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
+
+
+final HomeController controller = Get.find<HomeController>();
 
 class ProductImages extends StatefulWidget {
   const ProductImages({
@@ -18,6 +25,9 @@ class ProductImages extends StatefulWidget {
 
 class _ProductImagesState extends State<ProductImages> {
   int selectedImage = 0;
+  
+  
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,18 +38,18 @@ class _ProductImagesState extends State<ProductImages> {
             aspectRatio: 1,
             child: Hero(
               tag: widget.product.id.toString(),
-              child: Image(image: NetworkImage('http://192.168.43.86:8000/upload/product/${widget.product.images}'),)
+              child: Image(image: NetworkImage('http://192.168.43.86:8000/upload/color/'),)
             ),
           ),
         ),
         SizedBox(height: getProportionateScreenWidth(20)),
-        Row(
+       /* Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ...List.generate(widget.product.images.length,
+            ...List.generate(controller.productImages.value.length,
                 (index) => buildSmallProductPreview(index)),
           ],
-        )
+        )*/
       ],
     );
   }
@@ -63,7 +73,7 @@ class _ProductImagesState extends State<ProductImages> {
           border: Border.all(
               color: kPrimaryColor.withOpacity(selectedImage == index ? 1 : 0)),
         ),
-        child: Image(image: NetworkImage('http://192.168.43.86:8000/upload/product/${widget.product.images}'),),
+        child: Image(image: NetworkImage('http://192.168.43.86:8000/upload/color/'),),
       ),
     );
   }
