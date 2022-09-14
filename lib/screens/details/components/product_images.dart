@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
-
 final HomeController controller = Get.find<HomeController>();
 
 class ProductImages extends StatefulWidget {
@@ -25,33 +24,50 @@ class ProductImages extends StatefulWidget {
 
 class _ProductImagesState extends State<ProductImages> {
   int selectedImage = 0;
-  
-  
+  final controller = Get.put(DetailController());
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller.loadProductColors(widget.product.id);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          width: getProportionateScreenWidth(238),
-          child: AspectRatio(
-            aspectRatio: 1,
-            child: Hero(
-              tag: widget.product.id.toString(),
-              child: Image(image: NetworkImage('http://192.168.43.86:8000/upload/color/'),)
-            ),
-          ),
-        ),
-        SizedBox(height: getProportionateScreenWidth(20)),
-       /* Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ...List.generate(controller.productImages.value.length,
-                (index) => buildSmallProductPreview(index)),
-          ],
-        )*/
-      ],
-    );
+    return FutureBuilder(
+        future: controller.loadProductColors(widget.product.id),
+        builder: ((context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: Text('Loading...'));
+          }
+
+          return Column(
+            children: [
+              SizedBox(
+                width: getProportionateScreenWidth(238),
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: Hero(
+                      tag: widget.product.id.toString(),
+                      child: Image(
+                        image: NetworkImage(
+                            'http://192.168.43.86:8000${controller.productImages[selectedImage].image}'),
+                      )),
+                ),
+              ),
+              SizedBox(height: getProportionateScreenWidth(20)),
+              SingleChildScrollView(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ...List.generate(controller.productImages.length,
+                        (index) => buildSmallProductPreview(index)),
+                  ],
+                ),
+              )
+            ],
+          );
+        }));
   }
 
   GestureDetector buildSmallProductPreview(int index) {
@@ -73,7 +89,10 @@ class _ProductImagesState extends State<ProductImages> {
           border: Border.all(
               color: kPrimaryColor.withOpacity(selectedImage == index ? 1 : 0)),
         ),
-        child: Image(image: NetworkImage('http://192.168.43.86:8000/upload/color/'),),
+        child: Image(
+          image: NetworkImage(
+              'http://192.168.43.86:8000${controller.productImages[index].image}'),
+        ),
       ),
     );
   }

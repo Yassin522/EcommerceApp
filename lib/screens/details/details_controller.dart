@@ -10,7 +10,8 @@ class DetailController extends GetxController {
   HomeService homeService = HomeService();
   DetailService detailService = DetailService();
   RxList <ProductColor> productcolors = <ProductColor>[].obs;
-  RxList <ImageModel> productImages = <ImageModel>[].obs;
+  RxList  productDetails = [].obs;
+  RxList<ImageModel>  productImages = <ImageModel>[].obs;
  
 
   @override
@@ -19,8 +20,21 @@ class DetailController extends GetxController {
   }
 
   loadProductColors(var id) async {
-    print("getting products colors ....");
-    productcolors.value = await detailService.getProductsColors(id);
-    productImages.value=await detailService.getProductsImages(id);
+    productImages.value=[];
+    print("getting products images ....");
+    productDetails.value=await detailService.getProductsImages(id);
+
+       for (var i = 0; i < productDetails.length; i++) {
+            productImages.value.add(
+               ImageModel(
+                 id: productDetails[i]['image'][0]['id'],
+                 productColorId: productDetails[i]['image'][0]['product_color_id'],
+                 image: productDetails[i]['image'][0]['image'],
+               ),
+            );
+
+       }
+
+      print(productImages);
   }
 }

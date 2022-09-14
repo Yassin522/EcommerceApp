@@ -3,17 +3,16 @@ class ImageModel {
   String? image;
   int? productColorId;
 
-  ImageModel(
-      {this.id,
-      this.image,
-      this.productColorId,
-      });
+  ImageModel({
+    this.id,
+    this.image,
+    this.productColorId,
+  });
 
   ImageModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     image = json['image'];
     productColorId = json['product_color_id'];
-  
   }
 
   Map<String, dynamic> toJson() {
