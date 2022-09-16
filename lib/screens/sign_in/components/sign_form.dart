@@ -1,3 +1,4 @@
+import 'package:ecommerce/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -88,8 +89,13 @@ class _SignFormState extends State<SignForm> {
                 EasyLoading.show(
                   dismissOnTap: true,
                 );
-                await _controller.logIn();
-                EasyLoading.showSuccess('Welcome!');
+                var status = await _controller.logIn();
+                if (status == null) {
+                  EasyLoading.showError('هناك خطأ ما الرجاء المحاوة مجدداً');
+                } else {
+                  EasyLoading.showSuccess('Welcome!');
+                  Get.toNamed(AppPages.home);
+                }
               }
             },
           ),

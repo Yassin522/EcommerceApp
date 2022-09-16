@@ -25,48 +25,37 @@ class SpecialOffers extends StatelessWidget {
         SizedBox(height: getProportionateScreenWidth(20)),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child:
-GetBuilder(
-          init: HomeController(),
-          builder: (HomeController controller) {
-            return
-          FutureBuilder(
-              future: controller.loadCategories(),
+          child: GetBuilder(
+              init: HomeController(),
+              builder: (HomeController controller) {
+                return FutureBuilder(
+                    future: controller.loadCategories(),
+                    builder: ((context, AsyncSnapshot snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: Text('Loading...'));
+                      }
 
-              builder: ((context, AsyncSnapshot snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: Text('Loading...'));
-                }
-          
-          return  controller.categories.isEmpty
-                                  ? const SizedBox(
-                                      height: 50,
-                                      child: Center(
-                                        child:  Text(
-                                          'NO Categories',
-                                        
-                                        ),
-                                      ),
-                                    )
-                                  :
-          
-           Row(
-            children: 
-            List.generate(
-                    controller.categories.length,
-                    (index) =>  SpecialOfferCard(
-                image: controller.categories[index].image,
-                category: controller.categories[index].name,
-                press: () {},
-              ),
-                  ),
-            
-          );
-              }
-              )
-          );
-          }
-),
+                      return controller.categories.isEmpty
+                          ? const SizedBox(
+                              height: 50,
+                              child: Center(
+                                child: Text(
+                                  'NO Categories',
+                                ),
+                              ),
+                            )
+                          : Row(
+                              children: List.generate(
+                                controller.categories.length,
+                                (index) => SpecialOfferCard(
+                                  image: controller.categories[index].image,
+                                  category: controller.categories[index].name,
+                                  press: () {},
+                                ),
+                              ),
+                            );
+                    }));
+              }),
         ),
       ],
     );
@@ -97,8 +86,14 @@ class SpecialOfferCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: Stack(
               children: [
-              Image(image: NetworkImage('http://192.168.43.86:8000/upload/category/$image'),  fit: BoxFit.cover),
-              
+                image != null
+                    ? Container(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    'http://192.168.43.86:8000/upload/category/$image'))),
+                      )
+                    : Center(child: Icon(Icons.broken_image_outlined)),
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -127,7 +122,6 @@ class SpecialOfferCard extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                       
                       ],
                     ),
                   ),

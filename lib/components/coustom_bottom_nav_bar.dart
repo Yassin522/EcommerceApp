@@ -1,3 +1,4 @@
+import 'package:ecommerce/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -34,10 +35,6 @@ class CustomBottomNavBar extends StatelessWidget {
             color: Color(0xFFDADADA).withOpacity(0.15),
           ),
         ],
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(40),
-          topRight: Radius.circular(40),
-        ),
       ),
       child: SafeArea(
           top: false,
@@ -76,17 +73,16 @@ class CustomBottomNavBar extends StatelessWidget {
                     context, OrdersScreen.routeName),
               ),
               IconButton(
-                iconSize: MenuState.profile == selectedMenu ? 25 : 20,
-                icon: SvgPicture.asset(
-                  "assets/icons/User Icon.svg",
-                  color: MenuState.profile == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
-                ),
-                onPressed: () => Navigator.pushReplacementNamed(
-                    context, ProfileScreen.routeName),
-                // Navigator.pushNamed(context, ProfileScreen.routeName),
-              ),
+                  iconSize: MenuState.profile == selectedMenu ? 25 : 20,
+                  icon: SvgPicture.asset(
+                    "assets/icons/User Icon.svg",
+                    color: MenuState.profile == selectedMenu
+                        ? kPrimaryColor
+                        : inActiveIconColor,
+                  ),
+                  onPressed: () {
+                    Get.toNamed(AppPages.profile);
+                  }),
             ],
           )),
     );

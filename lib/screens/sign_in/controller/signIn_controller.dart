@@ -2,6 +2,7 @@ import 'package:get/state_manager.dart';
 import 'package:ecommerce/screens/sign_in/Models/global_user_info.dart';
 import 'package:ecommerce/screens/sign_in/Models/user_info.dart';
 import 'package:ecommerce/screens/sign_in/signIn_services.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Models/UserModel.dart';
@@ -19,14 +20,19 @@ class SigninController extends GetxController {
     print(remmberMe.toString());
     user = await service.logIn(email!, password!);
     print(user);
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('token', user!.access_token!);
 
-    GlobalUserInfo.name = user!.user!.user_name;
-    GlobalUserInfo.email = user!.user!.email;
-    GlobalUserInfo.phone = user!.user!.number_phone;
-    GlobalUserInfo.role = user!.user!.role_id;
-    GlobalUserInfo.city = user!.address![0].city;
-    GlobalUserInfo.token = user!.access_token;
+    if (user != null) {
+      if (remmberMe) {
+        var box = GetStorage().write('token', user!.access_token ?? '');
+      }
+      GlobalUserInfo.access_token = user!.access_token;
+      GlobalUserInfo.token_type = user!.token_type;
+      GlobalUserInfo.expires_in = user!.expires_in;
+      GlobalUserInfo.user = user!.user;
+      GlobalUserInfo.address = user!.address;
+      return user;
+    } else {
+      return null;
+    }
   }
 }
