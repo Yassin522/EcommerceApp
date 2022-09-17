@@ -72,7 +72,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 if (opration == null) {
                   EasyLoading.showError('حدث خطأ ما , رجاء تأكد من المدخلات');
                 } else {
-                  EasyLoading.showSuccess('مرحباً , ${GlobalUserInfo.name}');
+                  EasyLoading.showSuccess(
+                      'مرحباً , ${GlobalUserInfo.user!.user_name}');
                   Get.toNamed(AppPages.succse);
                 }
                 //

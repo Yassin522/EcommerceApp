@@ -8,8 +8,6 @@ import 'package:get/get.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
-final HomeController controller = Get.find<HomeController>();
-
 class ProductImages extends StatefulWidget {
   const ProductImages({
     Key? key,

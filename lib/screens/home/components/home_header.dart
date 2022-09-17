@@ -21,7 +21,30 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Scaffold(
+      drawer: Drawer(),
+      appBar: AppBar(
+          leading: IconBtnWithCounter(
+            svgSrc: "assets/icons/Bell.svg",
+            numOfitem: 3,
+            press: () {},
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  showSearch(context: context, delegate: SearchPage());
+                },
+                icon: const Center(
+                  child: Icon(
+                    Icons.search,
+                    color: kPrimaryColor,
+                    size: 25,
+                  ),
+                )),
+          ]),
+    );
+
+    /* Padding(
       padding:
           EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
       child: Row(
@@ -43,7 +66,7 @@ class HomeHeader extends StatelessWidget {
             width: 30,
             child: IconButton(
                 onPressed: () {
-                  Get.to(() => const SearchScreen());
+                  showSearch(context: context, delegate: SearchPage());
                 },
                 icon: Center(
                   child: Icon(
@@ -76,6 +99,6 @@ class HomeHeader extends StatelessWidget {
               onChanged: (value) {}),
         ],
       ),
-    );
+    );*/
   }
 }

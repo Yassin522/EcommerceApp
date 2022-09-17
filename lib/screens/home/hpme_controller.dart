@@ -23,8 +23,14 @@ class HomeController extends GetxController {
     print("ccccccccccccc");
     categories.value = await homeService.getCategories();
   }
+
   loadProducts() async {
     print("getting products ....");
     productss.value = await homeService.getProducts();
+  }
+
+  logout() async {
+    var result = await homeService.logout();
+    return result;
   }
 }
