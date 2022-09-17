@@ -20,10 +20,8 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-<<<<<<< HEAD
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-=======
         child: Scaffold(
       key: _scaffoldKey,
       drawer: Drawer(
@@ -141,7 +139,6 @@ class Body extends StatelessWidget {
                 )),
           ]),
       body: SingleChildScrollView(
->>>>>>> 18a4f3bac29737ad615d71b4d40f8495d6eeb343
         child: Column(
           children: [
             SizedBox(height: getProportionateScreenHeight(20)),
@@ -154,7 +151,7 @@ class Body extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    )));
   }
 }
 
