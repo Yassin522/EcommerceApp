@@ -12,10 +12,11 @@ import '../../models/data.dart';
 class DetailService {
 
   String token =
-'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzE3MDA3OCwiZXhwIjoxNjYzMTczNjc4LCJuYmYiOjE2NjMxNzAwNzgsImp0aSI6IkpJYWpRYWF0Z1p6eVNLZFQiLCJzdWIiOjQsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.GcYjZdUpIkgtXRVrHYYXyw94dsxbzkje9XI03cH9G5g';
+'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzQzNjcxMSwiZXhwIjoxNjYzNDQwMzExLCJuYmYiOjE2NjM0MzY3MTEsImp0aSI6IndKUVVHa1M0QWhoQng0SnUiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.Zg8b-QHQY7sFfyz-6QPDBJ4vrmmti1wkdX0HOUwGT8s';
   
    getProductsColors(var id) async {
-    var response = await http.get(Uri.parse(baseUrl + 'user/product/color/show?product_id=$id'), headers: {
+    var response = await http.get(Uri.parse(baseUrl + 'user/product/color/show?product_id=$id'),
+     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',

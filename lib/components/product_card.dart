@@ -1,3 +1,4 @@
+import 'package:ecommerce/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -27,7 +28,8 @@ class ProductCard extends StatelessWidget {
         width: getProportionateScreenWidth(width),
         child: GestureDetector(
           onTap: (){
-          Get.to(()=>DetailsScreen(), arguments: ProductDetailsArguments(product: product));
+            
+             Get.toNamed(AppPages.details, arguments: ProductDetailsArguments(product: product));
           },
           /*Navigator.pushNamed(
             context,
@@ -47,7 +49,7 @@ class ProductCard extends StatelessWidget {
                   ),
                   child: Hero(
                     tag: product.id.toString(),
-                    child: Image(image: NetworkImage('http://192.168.43.86:8000/upload/product/${product.image}'), fit: BoxFit.cover,),
+                    child: Image(image: NetworkImage('$imagebaseUrl${product.image}'), fit: BoxFit.cover,),
                   ),
                 ),
               ),

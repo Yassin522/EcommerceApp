@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:ecommerce/Controller/CartController/cartController.dart';
+import 'package:ecommerce/screens/cart/cartController.dart';
 import 'package:ecommerce/models/Cart.dart';
 import 'package:ecommerce/size_config.dart';
 
@@ -10,7 +10,8 @@ import '../../enums.dart';
 import 'components/body.dart';
 import 'components/check_out_card.dart';
 
-var _controller = Get.put(CartController());
+var controller = Get.find<CartController>();
+List<Cart> myItems=[];
 
 class CartScreen extends StatelessWidget {
   static String routeName = "/cart";
@@ -39,7 +40,7 @@ class CartScreen extends StatelessWidget {
               textDirection: TextDirection.rtl,
             ),
             Text(
-              "${_controller.cartItems.length} أغراض",
+              "${myItems.length} أغراض",
               style: Theme.of(context).textTheme.caption,
               textDirection: TextDirection.rtl,
             ),

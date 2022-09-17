@@ -4,10 +4,21 @@ import 'Product.dart';
 import 'Product.dart';
 
 class Cart {
-  final Product product;
-  final int numOfItem;
+ 
+   int numOfItem;
+   String name;
+   int price;
+   int product_id;
+   String image;
 
-  Cart({required this.product, required this.numOfItem});
+  Cart({
+   
+     required this.numOfItem,
+     required this.name,
+     required this.price,
+     required this.product_id,
+     required this.image,
+     });
 }
 
 // Demo data for our cart

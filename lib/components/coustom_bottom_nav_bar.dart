@@ -1,3 +1,4 @@
+import 'package:ecommerce/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -63,8 +64,9 @@ class CustomBottomNavBar extends StatelessWidget {
                     ? kPrimaryColor
                     : inActiveIconColor,
                 iconSize: MenuState.cart == selectedMenu ? 25 : 20,
-                onPressed: () => Navigator.pushReplacementNamed(
-                    context, CartScreen.routeName),
+                onPressed: () {
+                  Get.toNamed(AppPages.cart);
+                }
               ),
               IconButton(
                 iconSize: MenuState.oreders == selectedMenu ? 25 : 20,

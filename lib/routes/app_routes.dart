@@ -1,4 +1,5 @@
 import 'package:ecommerce/Bindings/details_binding.dart';
+import 'package:ecommerce/screens/cart/cart_screen.dart';
 import 'package:ecommerce/screens/details/details_screen.dart';
 import 'package:ecommerce/screens/home/home_screen.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import 'package:ecommerce/screens/sign_in/sign_in_screen.dart';
 import 'package:ecommerce/screens/sign_up/sign_up_screen.dart';
 import 'package:ecommerce/screens/splash/splash_screen.dart';
 
+import '../Bindings/cart_binding.dart';
 import '../screens/login_success/login_success_screen.dart';
 
 class AppPages {
@@ -19,6 +21,7 @@ class AppPages {
   static const succse = '/succse';
   static const home = '/home';
   static const details = '/details';
+  static const cart = '/cart';
 
   static final routes = [
     GetPage(
@@ -47,6 +50,11 @@ class AppPages {
       name: details,
       page: () => DetailsScreen(),
       binding: DetailsBinding(),
+    ),
+     GetPage(
+      name: cart,
+      page: () => CartScreen(),
+      binding: CartBinding(),
     ),
   ];
 }

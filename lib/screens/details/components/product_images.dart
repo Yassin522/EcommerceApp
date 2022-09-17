@@ -23,19 +23,22 @@ class ProductImages extends StatefulWidget {
 }
 
 class _ProductImagesState extends State<ProductImages> {
-  int selectedImage = 0;
-  final controller = Get.put(DetailController());
+  final controller = Get.find<DetailController>();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller.loadProductColors(widget.product.id);
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: controller.loadProductColors(widget.product.id),
+
+    return 
+    GetBuilder(
+            init: DetailController(),
+            builder: (DetailController c) {
+   return FutureBuilder(
+        future: c.loadProductColors(widget.product.id),
         builder: ((context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: Text('Loading...'));
@@ -51,7 +54,7 @@ class _ProductImagesState extends State<ProductImages> {
                       tag: widget.product.id.toString(),
                       child: Image(
                         image: NetworkImage(
-                            'http://192.168.43.86:8000${controller.productImages[selectedImage].image}'),
+                            '$imagebaseUrl${controller.productImages[controller.selectedImage.value].image}'),
                       )),
                 ),
               ),
@@ -68,14 +71,19 @@ class _ProductImagesState extends State<ProductImages> {
             ],
           );
         }));
+            }
+    );
+
+
+
+
   }
 
   GestureDetector buildSmallProductPreview(int index) {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          selectedImage = index;
-        });
+        controller.selectedImage.value = index;
+        controller.update();
       },
       child: AnimatedContainer(
         duration: defaultDuration,
@@ -87,11 +95,12 @@ class _ProductImagesState extends State<ProductImages> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-              color: kPrimaryColor.withOpacity(selectedImage == index ? 1 : 0)),
+              color: kPrimaryColor.withOpacity(
+                  controller.selectedImage.value == index ? 1 : 0)),
         ),
         child: Image(
           image: NetworkImage(
-              'http://192.168.43.86:8000${controller.productImages[index].image}'),
+              '$imagebaseUrl${controller.productImages[index].image}'),
         ),
       ),
     );
