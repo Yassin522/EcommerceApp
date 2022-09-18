@@ -1,8 +1,11 @@
+import 'package:ecommerce/Bindings/Seach_bindings.dart';
 import 'package:ecommerce/Bindings/details_binding.dart';
 import 'package:ecommerce/Bindings/home_binding.dart';
+import 'package:ecommerce/Bindings/pofileBindings.dart';
 import 'package:ecommerce/screens/details/details_screen.dart';
 import 'package:ecommerce/screens/home/home_screen.dart';
 import 'package:ecommerce/screens/profile/profile_screen.dart';
+import 'package:ecommerce/screens/search/product_for_category.dart';
 import 'package:get/get.dart';
 import 'package:ecommerce/Bindings/signUp_bindings.dart';
 import 'package:ecommerce/Bindings/sing_in_binding.dart';
@@ -11,6 +14,7 @@ import 'package:ecommerce/screens/sign_up/sign_up_screen.dart';
 import 'package:ecommerce/screens/splash/splash_screen.dart';
 
 import '../screens/login_success/login_success_screen.dart';
+import '../screens/profile/components/User_information_screen.dart';
 
 class AppPages {
   AppPages._();
@@ -22,6 +26,8 @@ class AppPages {
   static const home = '/home';
   static const details = '/details';
   static const profile = '/profile';
+  static const profileInfo = '/profileinfo';
+  static const cateSearch = '/catesearch';
 
   static final routes = [
     GetPage(
@@ -55,7 +61,17 @@ class AppPages {
     GetPage(
       name: profile,
       page: () => ProfileScreen(),
-      binding: DetailsBinding(),
+      binding: ProfileBindings(),
+    ),
+    GetPage(
+      name: profileInfo,
+      page: () => UserProfileScreen(),
+      binding: ProfileBindings(),
+    ),
+    GetPage(
+      name: cateSearch,
+      page: () => ProductsOfCategory(),
+      binding: SearchBindings(),
     ),
   ];
 }

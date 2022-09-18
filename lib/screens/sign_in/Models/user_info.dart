@@ -2,82 +2,80 @@
 import 'dart:convert';
 
 class UserInfo {
-  String? user_name;
+  String? name_user;
   String? id;
   String? email;
-  String? market_name;
+  String? name_market;
   String? number_phone;
   String? role_id;
   String? token;
   String? email_verified_at;
-  String? fcm;
+  String? FCM;
   UserInfo({
-    this.user_name,
+    this.name_user,
     this.id,
     this.email,
-    this.market_name,
+    this.name_market,
     this.number_phone,
     this.role_id,
     this.token,
     this.email_verified_at,
-    this.fcm,
+    this.FCM,
   });
 
   UserInfo copyWith({
-    String? user_name,
+    String? name_user,
     String? id,
     String? email,
-    String? market_name,
+    String? name_market,
     String? number_phone,
     String? role_id,
     String? token,
     String? email_verified_at,
-    String? fcm,
+    String? FCM,
   }) {
     return UserInfo(
-      user_name: user_name ?? this.user_name,
+      name_user: name_user ?? this.name_user,
       id: id ?? this.id,
       email: email ?? this.email,
-      market_name: market_name ?? this.market_name,
+      name_market: name_market ?? this.name_market,
       number_phone: number_phone ?? this.number_phone,
       role_id: role_id ?? this.role_id,
       token: token ?? this.token,
       email_verified_at: email_verified_at ?? this.email_verified_at,
-      fcm: fcm ?? this.fcm,
+      FCM: FCM ?? this.FCM,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'user_name': user_name,
+      'name_user': name_user,
       'id': id,
       'email': email,
-      'market_name': market_name,
+      'name_market': name_market,
       'number_phone': number_phone,
       'role_id': role_id,
       'token': token,
       'email_verified_at': email_verified_at,
-      'fcm': fcm,
+      'FCM': FCM,
     };
   }
 
   factory UserInfo.fromMap(Map<String, dynamic> map) {
     return UserInfo(
-      user_name: map['user_name'] != null ? map['user_name'] as String : null,
-      id: map['id'] != null ? map['id'].toString() as String : null,
+      name_user: map['name_user'] != null ? map['name_user'] as String : null,
+      id: map['id'] != null ? map['id'].toString() : null,
       email: map['email'] != null ? map['email'] as String : null,
-      market_name:
-          map['market_name'] != null ? map['market_name'] as String : null,
-      number_phone: map['number_phone'] != null
-          ? map['number_phone'].toString() as String
-          : null,
-      role_id:
-          map['role_id'] != null ? map['role_id'].toString() as String : null,
+      name_market:
+          map['name_market'] != null ? map['name_market'] as String : null,
+      number_phone:
+          map['number_phone'] != null ? map['number_phone'].toString() : null,
+      role_id: map['role_id'] != null ? map['role_id'].toString() : null,
       token: map['token'] != null ? map['token'] as String : null,
       email_verified_at: map['email_verified_at'] != null
           ? map['email_verified_at'] as String
           : null,
-      fcm: map['fcm'] != null ? map['fcm'] as String : null,
+      FCM: map['FCM'] != null ? map['FCM'] as String : null,
     );
   }
 
@@ -88,34 +86,34 @@ class UserInfo {
 
   @override
   String toString() {
-    return 'UserInfo(user_name: $user_name, id: $id, email: $email, market_name: $market_name, number_phone: $number_phone, role_id: $role_id, token: $token, email_verified_at: $email_verified_at, fcm: $fcm)';
+    return 'UserInfo(name_user: $name_user, id: $id, email: $email, name_market: $name_market, number_phone: $number_phone, role_id: $role_id, token: $token, email_verified_at: $email_verified_at, FCM: $FCM)';
   }
 
   @override
   bool operator ==(covariant UserInfo other) {
     if (identical(this, other)) return true;
 
-    return other.user_name == user_name &&
+    return other.name_user == name_user &&
         other.id == id &&
         other.email == email &&
-        other.market_name == market_name &&
+        other.name_market == name_market &&
         other.number_phone == number_phone &&
         other.role_id == role_id &&
         other.token == token &&
         other.email_verified_at == email_verified_at &&
-        other.fcm == fcm;
+        other.FCM == FCM;
   }
 
   @override
   int get hashCode {
-    return user_name.hashCode ^
+    return name_user.hashCode ^
         id.hashCode ^
         email.hashCode ^
-        market_name.hashCode ^
+        name_market.hashCode ^
         number_phone.hashCode ^
         role_id.hashCode ^
         token.hashCode ^
         email_verified_at.hashCode ^
-        fcm.hashCode;
+        FCM.hashCode;
   }
 }

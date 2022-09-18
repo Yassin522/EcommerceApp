@@ -1,3 +1,4 @@
+import 'package:ecommerce/models/Product.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:ecommerce/screens/home/home_service.dart';

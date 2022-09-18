@@ -47,6 +47,8 @@ class UserModel {
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
+    print('############');
+    if (map['user'] != null) print(map['user']['name_user']!.toString());
     return UserModel(
       access_token:
           map['access_token'] != null ? map['access_token'] as String : null,

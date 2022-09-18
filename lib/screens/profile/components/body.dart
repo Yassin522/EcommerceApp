@@ -17,10 +17,9 @@ class Body extends StatelessWidget {
           ProfilePic(),
           SizedBox(height: 20),
           ProfileMenu(
-            text: "حسابي",
-            icon: "assets/icons/User Icon.svg",
-            press: () => {},
-          ),
+              text: "حسابي",
+              icon: "assets/icons/User Icon.svg",
+              press: () => Get.toNamed(AppPages.profileInfo)),
           /*ProfileMenu(
             text: "اشعارات",
             icon: "assets/icons/Bell.svg",
