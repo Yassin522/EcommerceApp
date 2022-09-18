@@ -1,5 +1,6 @@
 import 'package:ecommerce/Bindings/Seach_bindings.dart';
 import 'package:ecommerce/Bindings/details_binding.dart';
+import 'package:ecommerce/screens/cart/cart_screen.dart';
 import 'package:ecommerce/Bindings/home_binding.dart';
 import 'package:ecommerce/Bindings/pofileBindings.dart';
 import 'package:ecommerce/screens/details/details_screen.dart';
@@ -13,6 +14,7 @@ import 'package:ecommerce/screens/sign_in/sign_in_screen.dart';
 import 'package:ecommerce/screens/sign_up/sign_up_screen.dart';
 import 'package:ecommerce/screens/splash/splash_screen.dart';
 
+import '../Bindings/cart_binding.dart';
 import '../screens/login_success/login_success_screen.dart';
 import '../screens/profile/components/User_information_screen.dart';
 
@@ -25,6 +27,7 @@ class AppPages {
   static const succse = '/succse';
   static const home = '/home';
   static const details = '/details';
+  static const cart = '/cart';
   static const profile = '/profile';
   static const profileInfo = '/profileinfo';
   static const cateSearch = '/catesearch';
@@ -58,6 +61,11 @@ class AppPages {
       page: () => DetailsScreen(),
       binding: DetailsBinding(),
     ),
+     GetPage(
+      name: cart,
+      page: () => CartScreen(),
+      binding: CartBinding(),
+     ),
     GetPage(
       name: profile,
       page: () => ProfileScreen(),

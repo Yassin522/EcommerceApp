@@ -9,7 +9,7 @@ import 'details_controller.dart';
 
 
 class DetailsScreen extends StatelessWidget {
-  static String routeName = "/details";
+ // static String routeName = "/details";
   
   @override
   Widget build(BuildContext context) {

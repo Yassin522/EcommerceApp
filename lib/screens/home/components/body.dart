@@ -20,6 +20,8 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Scaffold(
       key: _scaffoldKey,
       drawer: Drawer(
@@ -149,7 +151,7 @@ class Body extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    )));
   }
 }
 

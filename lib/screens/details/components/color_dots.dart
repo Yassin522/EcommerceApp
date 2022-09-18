@@ -1,6 +1,8 @@
+import 'package:ecommerce/screens/details/details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/components/rounded_icon_btn.dart';
 import 'package:ecommerce/models/Product.dart';
+import 'package:get/get.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -18,31 +20,56 @@ class ColorDots extends StatelessWidget {
     // Now this is fixed and only for demo
     int selectedColor = 3;
     return Padding(
-      padding:
-          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-      child: Row(
-        children: [
-         /* ...List.generate(
+        padding:
+            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+        child: GetBuilder(
+            init: DetailController(),
+            builder: (DetailController c) {
+              return Row(
+                children: [
+                  /* ...List.generate(
             product.colors.length,
             (index) => ColorDot(
               color: product.colors[index],
               isSelected: index == selectedColor,
             ),
           ),*/
-          Spacer(),
-          RoundedIconBtn(
-            icon: Icons.remove,
-            press: () {},
-          ),
-          SizedBox(width: getProportionateScreenWidth(20)),
-          RoundedIconBtn(
-            icon: Icons.add,
-            showShadow: true,
-            press: () {},
-          ),
-        ],
-      ),
-    );
+                  SizedBox(width: getProportionateScreenWidth(10)),
+                  Text(
+                    "${c.initprice.value}  ل.س",
+                    style: TextStyle(
+                      fontSize: getProportionateScreenWidth(18),
+                      fontWeight: FontWeight.w600,
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                  Spacer(),
+                  RoundedIconBtn(
+                    icon: Icons.remove,
+                    press: () {
+                      c.minusCounter(product.price!);
+                    },
+                  ),
+                  SizedBox(width: getProportionateScreenWidth(20)),
+                  Text(
+                    "${c.numbersofProducts.value}",
+                    style: TextStyle(
+                      fontSize: getProportionateScreenWidth(18),
+                      fontWeight: FontWeight.w600,
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                  SizedBox(width: getProportionateScreenWidth(20)),
+                  RoundedIconBtn(
+                    icon: Icons.add,
+                    showShadow: true,
+                    press: () {
+                      c.addCounter(product.price!);
+                    },
+                  ),
+                ],
+              );
+            }));
   }
 }
 

@@ -60,8 +60,9 @@ class CustomBottomNavBar extends StatelessWidget {
                     ? kPrimaryColor
                     : inActiveIconColor,
                 iconSize: MenuState.cart == selectedMenu ? 25 : 20,
-                onPressed: () => Navigator.pushReplacementNamed(
-                    context, CartScreen.routeName),
+                onPressed: () {
+                  Get.toNamed(AppPages.cart);
+                }
               ),
               IconButton(
                 iconSize: MenuState.oreders == selectedMenu ? 25 : 20,

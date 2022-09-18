@@ -1,3 +1,4 @@
+import 'package:ecommerce/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -86,14 +87,10 @@ class SpecialOfferCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: Stack(
               children: [
-                image != null
-                    ? Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                    'http://192.168.43.86:8000/upload/category/$image'))),
-                      )
-                    : Center(child: Icon(Icons.broken_image_outlined)),
+
+              Image(image: NetworkImage('$imagebaseUrl$image'),  fit: BoxFit.cover),
+              
+
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
