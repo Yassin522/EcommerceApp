@@ -3,27 +3,29 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:ecommerce/admin/screens/Users/Models/data.dart';
+
 import '../../../../models/data.dart';
 
-class UserModel {
-  List<Data>? data;
+class UsersModel {
+  List<UserData>? data;
   String? message;
-  String? statusCode;
-  UserModel({
+  String? status_code;
+  UsersModel({
     this.data,
     this.message,
-    this.statusCode,
+    this.status_code,
   });
 
-  UserModel copyWith({
-    List<Data>? data,
+  UsersModel copyWith({
+    List<UserData>? data,
     String? message,
-    String? statusCode,
+    String? status_code,
   }) {
-    return UserModel(
+    return UsersModel(
       data: data ?? this.data,
       message: message ?? this.message,
-      statusCode: statusCode ?? this.statusCode,
+      status_code: status_code ?? this.status_code,
     );
   }
 
@@ -31,43 +33,44 @@ class UserModel {
     return <String, dynamic>{
       'data': data!.map((x) => x.toMap()).toList(),
       'message': message,
-      'statusCode': statusCode,
+      'status_code': status_code,
     };
   }
 
-  factory UserModel.fromMap(Map<String, dynamic> map) {
-    return UserModel(
+  factory UsersModel.fromMap(Map<String, dynamic> map) {
+    return UsersModel(
       data: map['data'] != null
-          ? List<Data>.from(
-              map['data'].map<Data?>(
-                (x) => Data.fromMap(x as Map<String, dynamic>),
+          ? List<UserData>.from(
+              (map['data'] as List).map<UserData?>(
+                (x) => UserData.fromMap(x as Map<String, dynamic>),
               ),
             )
           : null,
       message: map['message'] != null ? map['message'] as String : null,
-      statusCode:
-          map['statusCode'] != null ? map['statusCode'] as String : null,
+      status_code: map['status_code'] != null
+          ? map['status_code'].toString() as String
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UsersModel.fromJson(String source) =>
+      UsersModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() =>
-      'UserModel(data: $data, message: $message, statusCode: $statusCode)';
+      'UsersModel(data: $data, message: $message, status_code: $status_code)';
 
   @override
-  bool operator ==(covariant UserModel other) {
+  bool operator ==(covariant UsersModel other) {
     if (identical(this, other)) return true;
 
     return listEquals(other.data, data) &&
         other.message == message &&
-        other.statusCode == statusCode;
+        other.status_code == status_code;
   }
 
   @override
-  int get hashCode => data.hashCode ^ message.hashCode ^ statusCode.hashCode;
+  int get hashCode => data.hashCode ^ message.hashCode ^ status_code.hashCode;
 }

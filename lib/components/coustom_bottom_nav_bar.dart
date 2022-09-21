@@ -67,7 +67,7 @@ class CustomBottomNavBar extends StatelessWidget {
                           Get.toNamed(AppPages.adminusers);
                         }
                       : () {
-                          Get.toNamed(AppPages.home);
+                          Get.toNamed(AppPages.cart);
                         }),
               IconButton(
                 iconSize: MenuState.oreders == selectedMenu ? 25 : 20,

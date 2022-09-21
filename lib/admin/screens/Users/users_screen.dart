@@ -17,17 +17,6 @@ class UsersScreen extends StatelessWidget {
       child: Scaffold(
         body: Body(),
         bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.cart),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: kPrimaryColor,
-          child: Center(
-            child: Icon(
-              Icons.person_add,
-              color: Colors.white,
-              size: 35,
-            ),
-          ),
-        ),
       ),
     );
   }
