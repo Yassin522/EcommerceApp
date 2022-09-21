@@ -6,9 +6,10 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../../constants.dart';
-import '../../../size_config.dart';
-import '../../search/search_screen.dart';
+import '../../../../constants.dart';
+import '../../../../screens/search/search_screen.dart';
+import '../../../../size_config.dart';
+
 import 'categories.dart';
 import 'discount_banner.dart';
 import 'home_header.dart';

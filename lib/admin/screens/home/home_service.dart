@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:ecommerce/constants.dart';
 import 'package:ecommerce/models/Product.dart';
 
-import '../../models/category.dart';
+import '../../../models/category.dart';
 
 class HomeService {
   var url = Uri.parse(baseUrl + 'category/show');

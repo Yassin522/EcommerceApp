@@ -8,6 +8,7 @@ import 'package:ecommerce/helper/keyboard.dart';
 import 'package:ecommerce/screens/forgot_password/forgot_password_screen.dart';
 import 'package:ecommerce/screens/login_success/login_success_screen.dart';
 import 'package:ecommerce/screens/sign_in/controller/signIn_controller.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
@@ -51,31 +52,16 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(30)),
           buildPasswordFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
-          Row(
-            children: [
-              GetBuilder(
-                  init: SigninController(),
-                  builder: (_) {
-                    return Checkbox(
-                      value: _controller.remmberMe,
-                      activeColor: kPrimaryColor,
-                      onChanged: (value) {
-                        _controller.remmberMe = value!;
-                        _controller.update();
-                      },
-                    );
-                  }),
-              const Text("تذكرني"),
-              const Spacer(),
-              GestureDetector(
-                onTap: () => Navigator.pushNamed(
-                    context, ForgotPasswordScreen.routeName),
-                child: const Text(
-                  "نسيت كلمة المرور؟",
-                  style: TextStyle(decoration: TextDecoration.underline),
-                ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: GestureDetector(
+              onTap: () =>
+                  Navigator.pushNamed(context, ForgotPasswordScreen.routeName),
+              child: const Text(
+                "نسيت كلمة المرور؟",
+                style: TextStyle(decoration: TextDecoration.underline),
               ),
-            ],
+            ),
           ),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
@@ -94,7 +80,12 @@ class _SignFormState extends State<SignForm> {
                   EasyLoading.showError('هناك خطأ ما الرجاء المحاوة مجدداً');
                 } else {
                   EasyLoading.showSuccess('Welcome!');
-                  Get.toNamed(AppPages.home);
+                  var role_id = GetStorage().read('role_id');
+                  if (role_id == 1) {
+                    Get.toNamed(AppPages.adminhome);
+                  } else {
+                    Get.toNamed(AppPages.home);
+                  }
                 }
               }
             },

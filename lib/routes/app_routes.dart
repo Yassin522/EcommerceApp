@@ -15,6 +15,10 @@ import 'package:ecommerce/screens/sign_up/sign_up_screen.dart';
 import 'package:ecommerce/screens/splash/splash_screen.dart';
 
 import '../Bindings/cart_binding.dart';
+import '../admin/Bindings/admin_home_bindings.dart';
+import '../admin/Bindings/users_binding.dart';
+import '../admin/screens/Users/users_screen.dart';
+import '../admin/screens/home/home_screen.dart';
 import '../screens/login_success/login_success_screen.dart';
 import '../screens/profile/components/User_information_screen.dart';
 
@@ -31,6 +35,9 @@ class AppPages {
   static const profile = '/profile';
   static const profileInfo = '/profileinfo';
   static const cateSearch = '/catesearch';
+  //?**********Admin**********************
+  static const adminhome = '/adminhome';
+  static const adminusers = '/adminusers';
 
   static final routes = [
     GetPage(
@@ -61,11 +68,11 @@ class AppPages {
       page: () => DetailsScreen(),
       binding: DetailsBinding(),
     ),
-     GetPage(
+    GetPage(
       name: cart,
       page: () => CartScreen(),
       binding: CartBinding(),
-     ),
+    ),
     GetPage(
       name: profile,
       page: () => ProfileScreen(),
@@ -80,6 +87,18 @@ class AppPages {
       name: cateSearch,
       page: () => ProductsOfCategory(),
       binding: SearchBindings(),
+    ),
+
+    //?************************Admin********************
+    GetPage(
+      name: adminhome,
+      page: () => AdminHomeScreen(),
+      binding: AdminHomeBindings(),
+    ),
+    GetPage(
+      name: adminusers,
+      page: () => UsersScreen(),
+      binding: UsersBindings(),
     ),
   ];
 }

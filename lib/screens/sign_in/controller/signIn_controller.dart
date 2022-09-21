@@ -11,20 +11,17 @@ class SigninController extends GetxController {
   SignInServices service = SignInServices();
   String? email;
   String? password;
-  bool remmberMe = false;
 
   UserModel? user;
   logIn() async {
     print(email);
     print(password);
-    print(remmberMe.toString());
+
     user = await service.logIn(email!, password!);
     print(user);
 
     if (user != null) {
-      if (remmberMe) {
-        var box = GetStorage().write('token', user!.access_token ?? '');
-      }
+      var box = GetStorage().write('role_id', user!.user!.role_id!);
       GlobalUserInfo.access_token = user!.access_token;
       GlobalUserInfo.token_type = user!.token_type;
       GlobalUserInfo.expires_in = user!.expires_in;

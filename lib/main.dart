@@ -16,11 +16,15 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  //منوررررررررررررررررررررررررررررررررررررررررررررر
-  // no u
   @override
   Widget build(BuildContext context) {
+    var role_id = GetStorage().read('role_id');
+    var initPage = AppPages.INITIAL;
+    /*if (role_id == '1') {
+      initPage = AppPages.adminhome;
+    } else if (role_id == '2') {
+      initPage = AppPages.home;
+    }*/
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -28,7 +32,7 @@ class MyApp extends StatelessWidget {
       // home: SplashScreen(),
       // We use routeName so that we dont need to remember the name
 
-      initialRoute: AppPages.INITIAL,
+      initialRoute: initPage,
       getPages: AppPages.routes,
       builder: EasyLoading.init(),
     );
