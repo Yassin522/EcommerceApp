@@ -21,7 +21,7 @@ class SigninController extends GetxController {
     print(user);
 
     if (user != null) {
-      var box = GetStorage().write('role_id', user!.user!.role_id!);
+      var box = GetStorage().write('role_id', user!.user!.role_id!.toString());
       GlobalUserInfo.access_token = user!.access_token;
       GlobalUserInfo.token_type = user!.token_type;
       GlobalUserInfo.expires_in = user!.expires_in;

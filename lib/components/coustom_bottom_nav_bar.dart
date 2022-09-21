@@ -7,16 +7,17 @@ import 'package:ecommerce/screens/cart/cart_screen.dart';
 import 'package:ecommerce/screens/home/home_screen.dart';
 import 'package:ecommerce/screens/profile/profile_screen.dart';
 import 'package:ecommerce/screens/search/search_screen.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../constants.dart';
 import '../enums.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
-  const CustomBottomNavBar({
+  CustomBottomNavBar({
     Key? key,
     required this.selectedMenu,
   }) : super(key: key);
-
+  var role_id = GetStorage().read('role_id');
   final MenuState selectedMenu;
 
   @override
@@ -53,16 +54,21 @@ class CustomBottomNavBar extends StatelessWidget {
                     context, HomeScreen.routeName),
               ),
               IconButton(
-                  icon: Icon(
-                    Icons.groups_outlined,
-                  ), //SvgPicture.asset("assets/icons/Cart Icon.svg"),
+                  icon: role_id == '1'
+                      ? Icon(Icons.groups_outlined)
+                      : SvgPicture.asset(
+                          "assets/icons/Cart Icon.svg"), //SvgPicture.asset("assets/icons/Cart Icon.svg"),
                   color: MenuState.cart == selectedMenu
                       ? kPrimaryColor
                       : inActiveIconColor,
                   iconSize: MenuState.cart == selectedMenu ? 30 : 25,
-                  onPressed: () {
-                    Get.toNamed(AppPages.adminusers);
-                  }),
+                  onPressed: role_id == '1'
+                      ? () {
+                          Get.toNamed(AppPages.adminusers);
+                        }
+                      : () {
+                          Get.toNamed(AppPages.home);
+                        }),
               IconButton(
                 iconSize: MenuState.oreders == selectedMenu ? 25 : 20,
                 icon: Icon(Icons.menu_outlined),

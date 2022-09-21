@@ -81,7 +81,7 @@ class _SignFormState extends State<SignForm> {
                 } else {
                   EasyLoading.showSuccess('Welcome!');
                   var role_id = GetStorage().read('role_id');
-                  if (role_id == 1) {
+                  if (role_id == '1') {
                     Get.toNamed(AppPages.adminhome);
                   } else {
                     Get.toNamed(AppPages.home);
