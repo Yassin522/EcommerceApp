@@ -43,16 +43,16 @@ class CustomBottomNavBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               IconButton(
-                iconSize: MenuState.home == selectedMenu ? 25 : 20,
-                icon: SvgPicture.asset(
-                  "assets/icons/Shop Icon.svg",
-                  color: MenuState.home == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
-                ),
-                onPressed: () => Navigator.pushReplacementNamed(
-                    context, HomeScreen.routeName),
-              ),
+                  iconSize: MenuState.home == selectedMenu ? 25 : 20,
+                  icon: SvgPicture.asset(
+                    "assets/icons/Shop Icon.svg",
+                    color: MenuState.home == selectedMenu
+                        ? kPrimaryColor
+                        : inActiveIconColor,
+                  ),
+                  onPressed: () {
+                    Get.toNamed(AppPages.home);
+                  }),
               IconButton(
                   icon: role_id == '1'
                       ? Icon(Icons.groups_outlined)
@@ -67,17 +67,21 @@ class CustomBottomNavBar extends StatelessWidget {
                           Get.toNamed(AppPages.adminusers);
                         }
                       : () {
-                          Get.toNamed(AppPages.home);
+                          Get.toNamed(AppPages.cart);
                         }),
               IconButton(
-                iconSize: MenuState.oreders == selectedMenu ? 25 : 20,
-                icon: Icon(Icons.menu_outlined),
-                color: MenuState.oreders == selectedMenu
-                    ? kPrimaryColor
-                    : inActiveIconColor,
-                onPressed: () => Navigator.pushReplacementNamed(
-                    context, OrdersScreen.routeName),
-              ),
+                  iconSize: MenuState.oreders == selectedMenu ? 25 : 20,
+                  icon: Icon(Icons.menu_outlined),
+                  color: MenuState.oreders == selectedMenu
+                      ? kPrimaryColor
+                      : inActiveIconColor,
+                  onPressed: role_id == '1'
+                      ? () {
+                          Get.toNamed(AppPages.adminusers);
+                        }
+                      : () {
+                          Get.toNamed(AppPages.orderdetails);
+                        }),
               IconButton(
                   iconSize: MenuState.profile == selectedMenu ? 25 : 20,
                   icon: SvgPicture.asset(

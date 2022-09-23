@@ -8,7 +8,7 @@ import '../hpme_controller.dart';
 import 'section_title.dart';
 
 class PopularProducts extends StatelessWidget {
-  var _controller = Get.find<HomeController>();
+  var _controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return Column(

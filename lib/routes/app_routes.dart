@@ -1,5 +1,7 @@
 import 'package:ecommerce/Bindings/Seach_bindings.dart';
 import 'package:ecommerce/Bindings/details_binding.dart';
+import 'package:ecommerce/Bindings/orderdetailsBinding.dart';
+import 'package:ecommerce/screens/Order/Oreders_screen.dart';
 import 'package:ecommerce/screens/cart/cart_screen.dart';
 import 'package:ecommerce/Bindings/home_binding.dart';
 import 'package:ecommerce/Bindings/pofileBindings.dart';
@@ -35,6 +37,7 @@ class AppPages {
   static const profile = '/profile';
   static const profileInfo = '/profileinfo';
   static const cateSearch = '/catesearch';
+  static const orderdetails = '/orderdetails';
   //?**********Admin**********************
   static const adminhome = '/adminhome';
   static const adminusers = '/adminusers';
@@ -87,6 +90,11 @@ class AppPages {
       name: cateSearch,
       page: () => ProductsOfCategory(),
       binding: SearchBindings(),
+    ),
+    GetPage(
+      name: orderdetails,
+      page: () => OrdersScreen(),
+      binding: OrderDetailsBinding(),
     ),
 
     //?************************Admin********************

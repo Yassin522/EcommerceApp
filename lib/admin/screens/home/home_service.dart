@@ -4,10 +4,11 @@ import 'package:ecommerce/services_config.dart';
 import 'package:http/http.dart' as http;
 import 'package:ecommerce/constants.dart';
 import 'package:ecommerce/models/Product.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../models/category.dart';
 
-class HomeService {
+class HomeAdminService {
   var url = Uri.parse(baseUrl + 'category/show');
   var url2 = Uri.parse(baseUrl + 'product/show');
   String token = GlobalUserInfo.access_token!;
@@ -70,6 +71,28 @@ class HomeService {
       print('Wleeeeeeeeee');
       print(e);
       return null;
+    }
+  }
+
+  addNewCategory(String categoryName, XFile selFile) async {
+    var headers = {'Authorization': 'Bearer $token'};
+    var request =
+        http.MultipartRequest('POST', Uri.parse(baseUrl + 'category/store'));
+    request.fields.addAll({'name': categoryName});
+    request.files
+        .add(await http.MultipartFile.fromPath('img_url', selFile.path));
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print("tmmmmmmmmmmmmm");
+      print(await response.stream.bytesToString());
+      return true;
+    } else {
+      print("nooooooooooo");
+      print(response.reasonPhrase);
+      return false;
     }
   }
 }
