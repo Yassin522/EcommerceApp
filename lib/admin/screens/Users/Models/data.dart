@@ -1,101 +1,103 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class Data {
+class UserData {
   String? id;
-  String? nameUser;
-  String? nameMarket;
-  String? numberPhone;
+  String? name_user;
+  String? name_market;
+  String? number_phone;
   String? email;
-  String? fCM;
-  String? roleId;
-  Data({
+  String? FCM;
+  String? role_id;
+  UserData({
     this.id,
-    this.nameUser,
-    this.nameMarket,
-    this.numberPhone,
+    this.name_user,
+    this.name_market,
+    this.number_phone,
     this.email,
-    this.fCM,
-    this.roleId,
+    this.FCM,
+    this.role_id,
   });
 
-  Data copyWith({
+  UserData copyWith({
     String? id,
-    String? nameUser,
-    String? nameMarket,
-    String? numberPhone,
+    String? name_user,
+    String? name_market,
+    String? number_phone,
     String? email,
-    String? fCM,
-    String? roleId,
+    String? FCM,
+    String? role_id,
   }) {
-    return Data(
+    return UserData(
       id: id ?? this.id,
-      nameUser: nameUser ?? this.nameUser,
-      nameMarket: nameMarket ?? this.nameMarket,
-      numberPhone: numberPhone ?? this.numberPhone,
+      name_user: name_user ?? this.name_user,
+      name_market: name_market ?? this.name_market,
+      number_phone: number_phone ?? this.number_phone,
       email: email ?? this.email,
-      fCM: fCM ?? this.fCM,
-      roleId: roleId ?? this.roleId,
+      FCM: FCM ?? this.FCM,
+      role_id: role_id ?? this.role_id,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'nameUser': nameUser,
-      'nameMarket': nameMarket,
-      'numberPhone': numberPhone,
+      'name_user': name_user,
+      'name_market': name_market,
+      'number_phone': number_phone,
       'email': email,
-      'fCM': fCM,
-      'roleId': roleId,
+      'FCM': FCM,
+      'role_id': role_id,
     };
   }
 
-  factory Data.fromMap(Map<String, dynamic> map) {
-    return Data(
-      id: map['id'] != null ? map['id'] as String : null,
-      nameUser: map['nameUser'] != null ? map['nameUser'] as String : null,
-      nameMarket:
-          map['nameMarket'] != null ? map['nameMarket'] as String : null,
-      numberPhone:
-          map['numberPhone'] != null ? map['numberPhone'] as String : null,
+  factory UserData.fromMap(Map<String, dynamic> map) {
+    return UserData(
+      id: map['id'] != null ? map['id'].toString() as String : null,
+      name_user: map['name_user'] != null ? map['name_user'] as String : null,
+      name_market:
+          map['name_market'] != null ? map['name_market'] as String : null,
+      number_phone: map['number_phone'] != null
+          ? map['number_phone'].toString() as String
+          : null,
       email: map['email'] != null ? map['email'] as String : null,
-      fCM: map['fCM'] != null ? map['fCM'] as String : null,
-      roleId: map['roleId'] != null ? map['roleId'] as String : null,
+      FCM: map['FCM'] != null ? map['FCM'] as String : null,
+      role_id:
+          map['role_id'] != null ? map['role_id'].toString() as String : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory Data.fromJson(String source) =>
-      Data.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserData.fromJson(String source) =>
+      UserData.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'Data(id: $id, nameUser: $nameUser, nameMarket: $nameMarket, numberPhone: $numberPhone, email: $email, fCM: $fCM, roleId: $roleId)';
+    return 'UserData(id: $id, name_user: $name_user, name_market: $name_market, number_phone: $number_phone, email: $email, FCM: $FCM, role_id: $role_id)';
   }
 
   @override
-  bool operator ==(covariant Data other) {
+  bool operator ==(covariant UserData other) {
     if (identical(this, other)) return true;
 
     return other.id == id &&
-        other.nameUser == nameUser &&
-        other.nameMarket == nameMarket &&
-        other.numberPhone == numberPhone &&
+        other.name_user == name_user &&
+        other.name_market == name_market &&
+        other.number_phone == number_phone &&
         other.email == email &&
-        other.fCM == fCM &&
-        other.roleId == roleId;
+        other.FCM == FCM &&
+        other.role_id == role_id;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-        nameUser.hashCode ^
-        nameMarket.hashCode ^
-        numberPhone.hashCode ^
+        name_user.hashCode ^
+        name_market.hashCode ^
+        number_phone.hashCode ^
         email.hashCode ^
-        fCM.hashCode ^
-        roleId.hashCode;
+        FCM.hashCode ^
+        role_id.hashCode;
   }
 }
