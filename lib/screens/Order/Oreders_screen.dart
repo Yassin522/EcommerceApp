@@ -1,3 +1,4 @@
+import 'package:ecommerce/screens/Order/components/body.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/components/coustom_bottom_nav_bar.dart';
 import 'package:ecommerce/enums.dart';
@@ -10,9 +11,7 @@ class OrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Orders'),
-      ),
+      body: Body(),
       bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.oreders),
     );
   }

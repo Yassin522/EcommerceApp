@@ -1,7 +1,7 @@
 import 'package:ecommerce/Bindings/Seach_bindings.dart';
 import 'package:ecommerce/Bindings/details_binding.dart';
-import 'package:ecommerce/admin/Bindings/add_product_bindings.dart';
-import 'package:ecommerce/admin/screens/add%20product/add_product_screen.dart';
+import 'package:ecommerce/Bindings/orderdetailsBinding.dart';
+import 'package:ecommerce/screens/Order/Oreders_screen.dart';
 import 'package:ecommerce/screens/cart/cart_screen.dart';
 import 'package:ecommerce/Bindings/home_binding.dart';
 import 'package:ecommerce/Bindings/pofileBindings.dart';
@@ -17,9 +17,11 @@ import 'package:ecommerce/screens/sign_up/sign_up_screen.dart';
 import 'package:ecommerce/screens/splash/splash_screen.dart';
 
 import '../Bindings/cart_binding.dart';
+import '../admin/Bindings/add_product_bindings.dart';
 import '../admin/Bindings/admin_home_bindings.dart';
 import '../admin/Bindings/users_binding.dart';
 import '../admin/screens/Users/users_screen.dart';
+import '../admin/screens/add product/add_product_screen.dart';
 import '../admin/screens/home/home_screen.dart';
 import '../screens/login_success/login_success_screen.dart';
 import '../screens/profile/components/User_information_screen.dart';
@@ -37,6 +39,7 @@ class AppPages {
   static const profile = '/profile';
   static const profileInfo = '/profileinfo';
   static const cateSearch = '/catesearch';
+  static const orderdetails = '/orderdetails';
   //?**********Admin**********************
   static const adminhome = '/adminhome';
   static const adminusers = '/adminusers';
@@ -90,6 +93,11 @@ class AppPages {
       name: cateSearch,
       page: () => ProductsOfCategory(),
       binding: SearchBindings(),
+    ),
+    GetPage(
+      name: orderdetails,
+      page: () => OrdersScreen(),
+      binding: OrderDetailsBinding(),
     ),
 
     //?************************Admin********************
