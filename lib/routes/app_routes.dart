@@ -1,5 +1,7 @@
 import 'package:ecommerce/Bindings/Seach_bindings.dart';
 import 'package:ecommerce/Bindings/details_binding.dart';
+import 'package:ecommerce/admin/Bindings/add_product_bindings.dart';
+import 'package:ecommerce/admin/screens/add%20product/add_product_screen.dart';
 import 'package:ecommerce/screens/cart/cart_screen.dart';
 import 'package:ecommerce/Bindings/home_binding.dart';
 import 'package:ecommerce/Bindings/pofileBindings.dart';
@@ -38,6 +40,7 @@ class AppPages {
   //?**********Admin**********************
   static const adminhome = '/adminhome';
   static const adminusers = '/adminusers';
+  static const adminaddproudct = '/adminaddproudct';
 
   static final routes = [
     GetPage(
@@ -99,6 +102,11 @@ class AppPages {
       name: adminusers,
       page: () => UsersScreen(),
       binding: UsersBindings(),
+    ),
+    GetPage(
+      name: adminaddproudct,
+      page: () => AddProductScreen(),
+      binding: AddProductBinding(),
     ),
   ];
 }

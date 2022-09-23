@@ -35,7 +35,6 @@ class SpecialOffers extends StatelessWidget {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Center(child: Text('Loading...'));
                       }
-
                       return controller.categories.isEmpty
                           ? const SizedBox(
                               height: 50,
