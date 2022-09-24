@@ -1,6 +1,8 @@
+import 'dart:io';
+
 class ProductColorModel {
   String? color;
   int? quantity;
   String? product_id;
-  String? image;
+  File? image;
 }
