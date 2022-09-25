@@ -33,11 +33,12 @@ class DetailController extends GetxController {
           id: productDetails[i]['image'][0]['id'],
           productColorId: productDetails[i]['image'][0]['product_color_id'],
           image: productDetails[i]['image'][0]['image'],
+          name: productDetails[i]['color'],
         ),
       );
     }
     if (productImages.value.isNotEmpty) ok.value = true;
-    print(productImages);
+    print(productImages[0].name);
   }
 
   addCounter(int val) {

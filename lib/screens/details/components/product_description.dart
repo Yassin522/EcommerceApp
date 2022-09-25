@@ -1,12 +1,14 @@
+import 'package:ecommerce/screens/details/details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ecommerce/models/Product.dart';
+import 'package:get/get.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
 class ProductDescription extends StatelessWidget {
-  const ProductDescription({
+  ProductDescription({
     Key? key,
     required this.product,
     this.pressOnSeeMore,
@@ -14,6 +16,7 @@ class ProductDescription extends StatelessWidget {
 
   final Product product;
   final GestureTapCallback? pressOnSeeMore;
+  final c = Get.find<DetailController>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +37,7 @@ class ProductDescription extends StatelessWidget {
             padding: EdgeInsets.all(getProportionateScreenWidth(15)),
             width: getProportionateScreenWidth(64),
             decoration: BoxDecoration(
-              color:
-                  Color(0xFFFFE6E6) ,
+              color: Color(0xFFFFE6E6),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20),
                 bottomLeft: Radius.circular(20),
@@ -43,8 +45,7 @@ class ProductDescription extends StatelessWidget {
             ),
             child: SvgPicture.asset(
               "assets/icons/Heart Icon_2.svg",
-              color:
-                   Color(0xFFFF4848) ,
+              color: Color(0xFFFF4848),
               height: getProportionateScreenWidth(16),
             ),
           ),

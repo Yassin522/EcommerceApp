@@ -56,6 +56,13 @@ class _ProductImagesState extends State<ProductImages> {
                             ),
                           ),
                           SizedBox(height: getProportionateScreenWidth(20)),
+                          Text(
+                            c.productImages[c.selectedImage.value].name!,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: kPrimaryColor),
+                          ),
+                          SizedBox(height: getProportionateScreenWidth(10)),
                           SingleChildScrollView(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

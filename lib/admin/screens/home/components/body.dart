@@ -27,10 +27,10 @@ class Body extends StatelessWidget {
       key: _scaffoldKey,
       drawer: Drawer(
         backgroundColor: Color.fromARGB(255, 238, 238, 238),
-        child: SingleChildScrollView(
-          child: SizedBox(
-            height: Get.size.height,
-            width: Get.size.width,
+        child: SizedBox(
+          height: Get.size.height,
+          width: Get.size.width,
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 Expanded(
@@ -145,16 +145,18 @@ class Body extends StatelessWidget {
                   ),
                 )),
           ]),
-      body: Column(
-        children: [
-          SizedBox(height: getProportionateScreenHeight(20)),
-          // HomeHeader(),
-          SizedBox(height: getProportionateScreenHeight(40)),
-          SpecialOffers(),
-          SizedBox(height: getProportionateScreenWidth(30)),
-          PopularProducts(),
-          SizedBox(height: getProportionateScreenWidth(30)),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: getProportionateScreenHeight(20)),
+            // HomeHeader(),
+            SizedBox(height: getProportionateScreenHeight(40)),
+            SpecialOffers(),
+            SizedBox(height: getProportionateScreenWidth(30)),
+            PopularProducts(),
+            SizedBox(height: getProportionateScreenWidth(30)),
+          ],
+        ),
       ),
     ));
   }
