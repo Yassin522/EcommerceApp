@@ -1,13 +1,15 @@
+import 'package:ecommerce/admin/screens/home/home_controller.dart';
+import 'package:ecommerce/admin/screens/search/search_screen.dart';
 import 'package:ecommerce/routes/app_routes.dart';
 import 'package:ecommerce/screens/home/components/icon_btn_with_counter.dart';
-import 'package:ecommerce/screens/home/hpme_controller.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../../constants.dart';
-import '../../../../screens/search/search_screen.dart';
+
 import '../../../../size_config.dart';
 
 import 'categories.dart';
@@ -82,7 +84,7 @@ class Body extends StatelessWidget {
                       DrawerOption(
                         label: 'تسجيل الخروج',
                         press: () async {
-                          var _controller = Get.find<HomeController>();
+                          var _controller = Get.find<AdminHomeController>();
                           EasyLoading.show(dismissOnTap: true);
                           var result = await _controller.logout();
                           if (result == true) {
@@ -116,7 +118,7 @@ class Body extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      // _scaffoldKey.currentState!.openDrawer();
+                      _scaffoldKey.currentState!.openDrawer();
                     },
                     icon: Icon(
                       Icons.menu,

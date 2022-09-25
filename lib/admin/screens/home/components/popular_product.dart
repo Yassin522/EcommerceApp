@@ -1,3 +1,4 @@
+import 'package:ecommerce/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ecommerce/components/product_card.dart';
@@ -16,7 +17,24 @@ class PopularProducts extends StatelessWidget {
         Padding(
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-          child: SectionTitle(title: "جميع المنتجات", press: () {}),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                onPressed: () {
+                  Get.toNamed(AppPages.adminaddproudct);
+                },
+                icon: Icon(
+                  Icons.add,
+                  size: 30,
+                ),
+              ),
+              SizedBox(
+                width: getProportionateScreenWidth(5),
+              ),
+              SectionTitle(title: "جميع المنتجات", press: () {}),
+            ],
+          ),
         ),
         SizedBox(height: getProportionateScreenWidth(20)),
         GetBuilder(

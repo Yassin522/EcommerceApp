@@ -51,7 +51,11 @@ class CustomBottomNavBar extends StatelessWidget {
                         : inActiveIconColor,
                   ),
                   onPressed: () {
-                    Get.toNamed(AppPages.home);
+                    if (role_id == '1') {
+                      Get.toNamed(AppPages.adminhome);
+                    } else {
+                      Get.toNamed(AppPages.home);
+                    }
                   }),
               IconButton(
                   icon: role_id == '1'

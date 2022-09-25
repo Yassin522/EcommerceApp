@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'size_config.dart';
 
-String baseUrl = 'http://192.168.43.86:8000/api/';
-String imagebaseUrl = 'http://192.168.43.86:8000';
+String baseUrl = 'http://192.168.43.171:8000/api/';
+String imagebaseUrl = 'http://192.168.43.171:8000';
 
 const kPrimaryColor = Color.fromARGB(255, 33, 214, 124);
 const kPrimaryLightColor = Color(0xFFFFECDF);
@@ -37,7 +37,7 @@ const String kMatchPassError = "كلمات المرور غير متطابقة";
 const String kNamelNullError = " الرجاء بإدخال اسمك";
 const String kPhoneNumberNullError = "الرجاء إدخال رقم الهاتف";
 const String kAddressNullError = "الرجاء إدخال عنوانك";
-
+const String kEmptyField = 'الحقل لا يمكن أن يكون فارغ';
 final otpInputDecoration = InputDecoration(
   contentPadding:
       EdgeInsets.symmetric(vertical: getProportionateScreenWidth(15)),

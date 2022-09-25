@@ -115,7 +115,7 @@ class Body extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      // _scaffoldKey.currentState!.openDrawer();
+                      _scaffoldKey.currentState!.openDrawer();
                     },
                     icon: Icon(
                       Icons.menu,
