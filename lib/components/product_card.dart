@@ -27,9 +27,9 @@ class ProductCard extends StatelessWidget {
       child: SizedBox(
         width: getProportionateScreenWidth(width),
         child: GestureDetector(
-          onTap: (){
-            
-             Get.toNamed(AppPages.details, arguments: ProductDetailsArguments(product: product));
+          onTap: () {
+            Get.toNamed(AppPages.details,
+                arguments: ProductDetailsArguments(product: product));
           },
           /*Navigator.pushNamed(
             context,
@@ -49,14 +49,19 @@ class ProductCard extends StatelessWidget {
                   ),
                   child: Hero(
                     tag: product.id.toString(),
-                    child: Image(image: NetworkImage('$imagebaseUrl${product.image}'), fit: BoxFit.cover,),
+                    child: Image(
+                      image: NetworkImage('$imagebaseUrl${product.image}'),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
               const SizedBox(height: 10),
               Center(
                 child: Text(
-                  product.name!,
+                  product.status == '1'
+                      ? product.name! + ' (متوفر)'
+                      : product.name! + ' (غير متوفر)',
                   style: TextStyle(color: Colors.black),
                   maxLines: 2,
                 ),

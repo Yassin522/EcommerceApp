@@ -15,13 +15,11 @@ class DetailController extends GetxController {
   var numbersofProducts = 0.obs;
   var initprice = 0.obs;
   var selectedImage = 0.obs;
+  var ok = false.obs;
 
   @override
   void onInit() {
     super.onInit();
-    print("detailllllll");
-    print(numbersofProducts);
-
   }
 
   loadProductColors(var id) async {
@@ -38,19 +36,17 @@ class DetailController extends GetxController {
         ),
       );
     }
-
+    if (productImages.value.isNotEmpty) ok.value = true;
     print(productImages);
   }
 
   addCounter(int val) {
     numbersofProducts.value++;
     initprice.value += val;
-    update();
   }
 
   minusCounter(int val) {
     numbersofProducts.value--;
     initprice.value -= val;
-    update();
   }
 }

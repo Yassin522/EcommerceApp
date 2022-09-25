@@ -11,7 +11,7 @@ class Body extends StatefulWidget {
   _BodyState createState() => _BodyState();
 }
 
-var controller = Get.find<OrderController>();
+var c = Get.find<OrderController>();
 
 class _BodyState extends State<Body> {
   @override
@@ -25,7 +25,7 @@ class _BodyState extends State<Body> {
           
         GetBuilder(
             init: OrderController(),
-            builder: (OrderController c) {
+            builder: (_) {
               return FutureBuilder(
                   future: c.loadOrders(GlobalUserInfo.user!.id!),
                   builder: ((context, AsyncSnapshot snapshot) {

@@ -9,60 +9,29 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 
-class AdminHomeController extends GetxController {
+class AdminCategoryController extends GetxController {
   HomeAdminService homeService = HomeAdminService();
-  RxList productss = [].obs;
-  RxList categories = [].obs;
-  var isLoading = true.obs;
-  var isLoading2 = true.obs;
-  var isLoading3 = true.obs;
   final categoryNameController = TextEditingController();
-  Rx<Uint8List> image = Uint8List(0).obs;
   Rx<XFile> imagefile = XFile('nothing').obs;
   RxBool ok = true.obs;
-  RxBool ok2 = true.obs;
+
+  
   @override
   void onInit() {
-    loadCategories();
-    loadProducts();
+
     super.onInit();
   }
 
-  loadCategories() async {
-    print("ccccccccccccc");
-    categories.value = await homeService.getCategories();
-  }
 
-  loadProducts() async {
-    print("getting products ....");
-    productss.value = await homeService.getProducts();
-  }
-
-  logout() async {
-    var result = await homeService.logout();
-    return result;
-  }
 
   addcategory() async {
     ok.value = await homeService.addNewCategory(
         categoryNameController.text, imagefile.value);
 
-    categoryNameController.clear();
-
+        categoryNameController.clear();
+       
     if (ok.value == true) {
       EasyLoading.showSuccess('تم اضافة النوع الجديد بنجاح');
-    } else {
-      EasyLoading.showError('حدث خطا في العملية');
-    }
-
-    update();
-  }
-
-  deletecategory(int id) async {
-    ok2.value = await homeService.deleteCategory(id);
-
-    if (ok2.value == true) {
-      EasyLoading.showSuccess('تم الحذف ينجاح');
     } else {
       EasyLoading.showError('حدث خطا في العملية');
     }
@@ -73,10 +42,11 @@ class AdminHomeController extends GetxController {
 
     XFile? _file = await _imagePicker.pickImage(source: source);
     imagefile.value = _file!;
-
+    
     if (_file != null) {
       return _file;
     }
+    update();
   }
 
   void selectImage() async {

@@ -1,6 +1,7 @@
 import 'package:ecommerce/Bindings/Seach_bindings.dart';
 import 'package:ecommerce/Bindings/details_binding.dart';
 import 'package:ecommerce/Bindings/orderdetailsBinding.dart';
+import 'package:ecommerce/admin/Bindings/category_binding.dart';
 import 'package:ecommerce/screens/Order/Oreders_screen.dart';
 import 'package:ecommerce/screens/cart/cart_screen.dart';
 import 'package:ecommerce/Bindings/home_binding.dart';
@@ -20,6 +21,7 @@ import '../Bindings/cart_binding.dart';
 import '../admin/Bindings/admin_home_bindings.dart';
 import '../admin/Bindings/users_binding.dart';
 import '../admin/screens/Users/users_screen.dart';
+import '../admin/screens/home/components/special_offers.dart';
 import '../admin/screens/home/home_screen.dart';
 import '../screens/login_success/login_success_screen.dart';
 import '../screens/profile/components/User_information_screen.dart';
@@ -41,6 +43,7 @@ class AppPages {
   //?**********Admin**********************
   static const adminhome = '/adminhome';
   static const adminusers = '/adminusers';
+  static const admincategory = '/admincategory';
 
   static final routes = [
     GetPage(
@@ -107,6 +110,11 @@ class AppPages {
       name: adminusers,
       page: () => UsersScreen(),
       binding: UsersBindings(),
+    ),
+     GetPage(
+      name: admincategory,
+      page: () => SpecialOffers(),
+      binding: AdminCategoryBindings(),
     ),
   ];
 }

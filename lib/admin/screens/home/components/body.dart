@@ -143,18 +143,16 @@ class Body extends StatelessWidget {
                   ),
                 )),
           ]),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: getProportionateScreenHeight(20)),
-            // HomeHeader(),
-            SizedBox(height: getProportionateScreenHeight(40)),
-            SpecialOffers(),
-            SizedBox(height: getProportionateScreenWidth(30)),
-            PopularProducts(),
-            SizedBox(height: getProportionateScreenWidth(30)),
-          ],
-        ),
+      body: Column(
+        children: [
+          SizedBox(height: getProportionateScreenHeight(20)),
+          // HomeHeader(),
+          SizedBox(height: getProportionateScreenHeight(40)),
+          SpecialOffers(),
+          SizedBox(height: getProportionateScreenWidth(30)),
+          PopularProducts(),
+          SizedBox(height: getProportionateScreenWidth(30)),
+        ],
       ),
     ));
   }

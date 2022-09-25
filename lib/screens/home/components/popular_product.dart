@@ -19,7 +19,6 @@ class PopularProducts extends StatelessWidget {
           child: SectionTitle(title: "جميع المنتجات", press: () {}),
         ),
         SizedBox(height: getProportionateScreenWidth(20)),
-
         GetBuilder(
             init: HomeController(),
             builder: (HomeController c) {
@@ -54,27 +53,23 @@ class PopularProducts extends StatelessWidget {
           ],
         );*/
 
-                      SingleChildScrollView(
+                      GridView.builder(
+                          shrinkWrap: true,
                           scrollDirection: Axis.vertical,
-                          child: GridView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: c.productss.length,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 15,
-                              childAspectRatio: 0.75,
-                              crossAxisSpacing: 15,
-                            ),
-                            itemBuilder: (context, index) =>
-                                ProductCard(product: c.productss[index]),
+                          itemCount: c.productss.length,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 15,
+                            childAspectRatio: 0.75,
+                            crossAxisSpacing: 15,
                           ),
+                          itemBuilder: (context, index) =>
+                              ProductCard(product: c.productss[index]),
                         );
                 }),
               );
             })
-
       ],
     );
   }
