@@ -22,11 +22,8 @@ import '../admin/Bindings/add_product_bindings.dart';
 import '../admin/Bindings/admin_home_bindings.dart';
 import '../admin/Bindings/users_binding.dart';
 import '../admin/screens/Users/users_screen.dart';
-<<<<<<< HEAD
 import '../admin/screens/home/components/special_offers.dart';
-=======
 import '../admin/screens/add product/add_product_screen.dart';
->>>>>>> 54826a319c3727fb1ec13fb8f6749fc8c37f21d6
 import '../admin/screens/home/home_screen.dart';
 import '../screens/login_success/login_success_screen.dart';
 import '../screens/profile/components/User_information_screen.dart';
@@ -48,11 +45,8 @@ class AppPages {
   //?**********Admin**********************
   static const adminhome = '/adminhome';
   static const adminusers = '/adminusers';
-<<<<<<< HEAD
   static const admincategory = '/admincategory';
-=======
   static const adminaddproudct = '/adminaddproudct';
->>>>>>> 54826a319c3727fb1ec13fb8f6749fc8c37f21d6
 
   static final routes = [
     GetPage(
@@ -120,17 +114,15 @@ class AppPages {
       page: () => UsersScreen(),
       binding: UsersBindings(),
     ),
-<<<<<<< HEAD
      GetPage(
       name: admincategory,
       page: () => SpecialOffers(),
       binding: AdminCategoryBindings(),
-=======
+     ),
     GetPage(
       name: adminaddproudct,
       page: () => AddProductScreen(),
       binding: AddProductBinding(),
->>>>>>> 54826a319c3727fb1ec13fb8f6749fc8c37f21d6
     ),
   ];
 }
