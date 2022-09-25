@@ -8,68 +8,61 @@ import '../../../constants.dart';
 import '../../../size_config.dart';
 
 class ColorDots extends StatelessWidget {
-  const ColorDots({
+  ColorDots({
     Key? key,
     required this.product,
   }) : super(key: key);
 
   final Product product;
+  final c = Get.find<DetailController>();
 
   @override
   Widget build(BuildContext context) {
     // Now this is fixed and only for demo
     int selectedColor = 3;
     return Padding(
-        padding:
-            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-        child: GetBuilder(
-            init: DetailController(),
-            builder: (DetailController c) {
-              return Row(
-                children: [
-                  /* ...List.generate(
-            product.colors.length,
-            (index) => ColorDot(
-              color: product.colors[index],
-              isSelected: index == selectedColor,
-            ),
-          ),*/
-                  SizedBox(width: getProportionateScreenWidth(10)),
-                  Text(
-                    "${c.initprice.value}  ل.س",
-                    style: TextStyle(
-                      fontSize: getProportionateScreenWidth(18),
-                      fontWeight: FontWeight.w600,
-                      color: kPrimaryColor,
-                    ),
+      padding:
+          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+      child: Obx(
+        (() => Row(
+              children: [
+                SizedBox(width: getProportionateScreenWidth(10)),
+                Text(
+                  "${c.initprice.value}  ل.س",
+                  style: TextStyle(
+                    fontSize: getProportionateScreenWidth(18),
+                    fontWeight: FontWeight.w600,
+                    color: kPrimaryColor,
                   ),
-                  Spacer(),
-                  RoundedIconBtn(
-                    icon: Icons.remove,
-                    press: () {
-                      c.minusCounter(product.price!);
-                    },
+                ),
+                Spacer(),
+                RoundedIconBtn(
+                  icon: Icons.remove,
+                  press: () {
+                    c.minusCounter(product.price!);
+                  },
+                ),
+                SizedBox(width: getProportionateScreenWidth(20)),
+                Text(
+                  "${c.numbersofProducts.value}",
+                  style: TextStyle(
+                    fontSize: getProportionateScreenWidth(18),
+                    fontWeight: FontWeight.w600,
+                    color: kPrimaryColor,
                   ),
-                  SizedBox(width: getProportionateScreenWidth(20)),
-                  Text(
-                    "${c.numbersofProducts.value}",
-                    style: TextStyle(
-                      fontSize: getProportionateScreenWidth(18),
-                      fontWeight: FontWeight.w600,
-                      color: kPrimaryColor,
-                    ),
-                  ),
-                  SizedBox(width: getProportionateScreenWidth(20)),
-                  RoundedIconBtn(
-                    icon: Icons.add,
-                    showShadow: true,
-                    press: () {
-                      c.addCounter(product.price!);
-                    },
-                  ),
-                ],
-              );
-            }));
+                ),
+                SizedBox(width: getProportionateScreenWidth(20)),
+                RoundedIconBtn(
+                  icon: Icons.add,
+                  showShadow: true,
+                  press: () {
+                    c.addCounter(product.price!);
+                  },
+                ),
+              ],
+            )),
+      ),
+    );
   }
 }
 

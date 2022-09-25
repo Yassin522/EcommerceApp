@@ -95,4 +95,28 @@ class HomeAdminService {
       return false;
     }
   }
+
+  deleteCategory(int id) async {
+    try {
+      var respone = await http.delete(
+          Uri.parse(
+            '${baseUrl}category/delete/$id',
+          ),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          });
+
+      if (respone.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print('Wleeeeeeeeee');
+      print(e);
+      return false;
+    }
+  }
 }

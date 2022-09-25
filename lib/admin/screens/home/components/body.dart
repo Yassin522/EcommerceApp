@@ -27,10 +27,10 @@ class Body extends StatelessWidget {
       key: _scaffoldKey,
       drawer: Drawer(
         backgroundColor: Color.fromARGB(255, 238, 238, 238),
-        child: SingleChildScrollView(
-          child: SizedBox(
-            height: Get.size.height,
-            width: Get.size.width,
+        child: SizedBox(
+          height: Get.size.height,
+          width: Get.size.width,
+          child: SingleChildScrollView(
             child: Column(
               children: [
                 Expanded(

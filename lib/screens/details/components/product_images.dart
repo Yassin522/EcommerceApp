@@ -21,7 +21,7 @@ class ProductImages extends StatefulWidget {
 }
 
 class _ProductImagesState extends State<ProductImages> {
-  final controller = Get.find<DetailController>();
+  final c = Get.find<DetailController>();
   @override
   void initState() {
     // TODO: implement initState
@@ -30,58 +30,60 @@ class _ProductImagesState extends State<ProductImages> {
 
   @override
   Widget build(BuildContext context) {
+    return GetBuilder(
+        init: DetailController(),
+        builder: (_) {
+          return FutureBuilder(
+              future: c.loadProductColors(widget.product.id),
+              builder: ((context, AsyncSnapshot snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: Text('Loading...'));
+                }
 
-    return 
-    GetBuilder(
-            init: DetailController(),
-            builder: (DetailController c) {
-   return FutureBuilder(
-        future: c.loadProductColors(widget.product.id),
-        builder: ((context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: Text('Loading...'));
-          }
-
-          return Column(
-            children: [
-              SizedBox(
-                width: getProportionateScreenWidth(238),
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: Hero(
-                      tag: widget.product.id.toString(),
-                      child: Image(
-                        image: NetworkImage(
-                            '$imagebaseUrl${controller.productImages[controller.selectedImage.value].image}'),
-                      )),
-                ),
-              ),
-              SizedBox(height: getProportionateScreenWidth(20)),
-              SingleChildScrollView(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ...List.generate(controller.productImages.length,
-                        (index) => buildSmallProductPreview(index)),
-                  ],
-                ),
-              )
-            ],
-          );
-        }));
-            }
-    );
-
-
-
-
+                return c.ok.value == true
+                    ? Column(
+                        children: [
+                          SizedBox(
+                            width: getProportionateScreenWidth(238),
+                            child: AspectRatio(
+                              aspectRatio: 1,
+                              child: Hero(
+                                  tag: widget.product.id.toString(),
+                                  child: Image(
+                                    image: NetworkImage(
+                                        '$imagebaseUrl${c.productImages[c.selectedImage.value].image}'),
+                                  )),
+                            ),
+                          ),
+                          SizedBox(height: getProportionateScreenWidth(20)),
+                          Text(
+                            c.productImages[c.selectedImage.value].name!,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: kPrimaryColor),
+                          ),
+                          SizedBox(height: getProportionateScreenWidth(10)),
+                          SingleChildScrollView(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ...List.generate(c.productImages.length,
+                                    (index) => buildSmallProductPreview(index)),
+                              ],
+                            ),
+                          )
+                        ],
+                      )
+                    : Center(child: Text('لا يوجد نكهات'));
+              }));
+        });
   }
 
   GestureDetector buildSmallProductPreview(int index) {
     return GestureDetector(
       onTap: () {
-        controller.selectedImage.value = index;
-        controller.update();
+        c.selectedImage.value = index;
+        c.update();
       },
       child: AnimatedContainer(
         duration: defaultDuration,
@@ -93,12 +95,11 @@ class _ProductImagesState extends State<ProductImages> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-              color: kPrimaryColor.withOpacity(
-                  controller.selectedImage.value == index ? 1 : 0)),
+              color: kPrimaryColor
+                  .withOpacity(c.selectedImage.value == index ? 1 : 0)),
         ),
         child: Image(
-          image: NetworkImage(
-              '$imagebaseUrl${controller.productImages[index].image}'),
+          image: NetworkImage('$imagebaseUrl${c.productImages[index].image}'),
         ),
       ),
     );

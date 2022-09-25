@@ -1,13 +1,15 @@
+import 'package:ecommerce/screens/details/details_controller.dart';
 import 'package:ecommerce/screens/sign_in/Models/global_user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ecommerce/models/Product.dart';
+import 'package:get/get.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
 class ProductDescription extends StatelessWidget {
-  const ProductDescription({
+  ProductDescription({
     Key? key,
     required this.product,
     this.pressOnSeeMore,
@@ -15,6 +17,7 @@ class ProductDescription extends StatelessWidget {
 
   final Product product;
   final GestureTapCallback? pressOnSeeMore;
+  final c = Get.find<DetailController>();
 
   @override
   Widget build(BuildContext context) {

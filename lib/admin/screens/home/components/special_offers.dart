@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:ecommerce/admin/screens/home/components/category_card.dart';
+import 'package:ecommerce/admin/screens/home/components/category_controller.dart';
 import 'package:ecommerce/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,9 +12,10 @@ import '../home_controller.dart';
 import 'section_title.dart';
 
 class SpecialOffers extends StatelessWidget {
-  const SpecialOffers({
+  SpecialOffers({
     Key? key,
   }) : super(key: key);
+  final c = Get.find<AdminHomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +28,10 @@ class SpecialOffers extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               GetBuilder(
-                  init: AdminHomeController(),
-                  builder: (AdminHomeController c) {
+                  init: AdminCategoryController(),
+                  builder: (_) {
                     return IconButton(
                       onPressed: () {
-                        print("imagefile");
-                        print(c.imagefile.value.path);
                         Get.defaultDialog(
                             backgroundColor: Colors.white,
                             title: 'اضافة نوع منجات جديد',
@@ -42,10 +43,7 @@ class SpecialOffers extends StatelessWidget {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         TextField(
-                                          onChanged: (value) {
-                                            /*c.getSubjectOptions();
-                                            c.update();*/
-                                          },
+                                          onChanged: (value) {},
                                           controller: c.categoryNameController,
                                           keyboardType: TextInputType.text,
                                           maxLines: 1,
@@ -105,7 +103,6 @@ class SpecialOffers extends StatelessWidget {
                                                 child: IconButton(
                                                   onPressed: () {
                                                     c.selectImage();
-                                                    c.update();
                                                   },
                                                   icon: const Icon(
                                                     Icons.camera_alt,
@@ -136,7 +133,6 @@ class SpecialOffers extends StatelessWidget {
                                                   } else {
                                                     c.addcategory();
                                                   }
-                                                  c.update();
 
                                                   Get.back();
                                                 },
@@ -153,7 +149,6 @@ class SpecialOffers extends StatelessWidget {
                                               ),
                                               InkWell(
                                                 onTap: () {
-                                               
                                                   Get.back();
                                                 },
                                                 child: Container(
@@ -212,7 +207,10 @@ class SpecialOffers extends StatelessWidget {
                                 (index) => SpecialOfferCard(
                                   image: controller.categories[index].image,
                                   category: controller.categories[index].name,
-                                  press: () {},
+                                  id: controller.categories[index].id,
+                                  press: () {
+                                    print(controller.categories[index].id);
+                                  },
                                 ),
                               ),
                             );
@@ -220,74 +218,6 @@ class SpecialOffers extends StatelessWidget {
               }),
         ),
       ],
-    );
-  }
-}
-
-class SpecialOfferCard extends StatelessWidget {
-  const SpecialOfferCard({
-    Key? key,
-    required this.category,
-    required this.image,
-    required this.press,
-  }) : super(key: key);
-
-  final String category, image;
-  final GestureTapCallback press;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: getProportionateScreenWidth(20)),
-      child: GestureDetector(
-        onTap: press,
-        child: SizedBox(
-          width: getProportionateScreenWidth(242),
-          height: getProportionateScreenWidth(100),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Stack(
-              children: [
-                Image(
-                    image: NetworkImage('$imagebaseUrl$image'),
-                    fit: BoxFit.cover),
-                Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color(0xFF343434).withOpacity(0.4),
-                        Color(0xFF343434).withOpacity(0.15),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(15.0),
-                    vertical: getProportionateScreenWidth(10),
-                  ),
-                  child: Text.rich(
-                    TextSpan(
-                      style: TextStyle(color: Colors.white),
-                      children: [
-                        TextSpan(
-                          text: "$category\n",
-                          style: TextStyle(
-                            fontSize: getProportionateScreenWidth(18),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
