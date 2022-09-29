@@ -1,7 +1,9 @@
 import 'package:ecommerce/Bindings/Seach_bindings.dart';
+import 'package:ecommerce/Bindings/admin_order_binding.dart';
 import 'package:ecommerce/Bindings/details_binding.dart';
 import 'package:ecommerce/Bindings/orderdetailsBinding.dart';
 import 'package:ecommerce/admin/Bindings/category_binding.dart';
+import 'package:ecommerce/admin/screens/Order/Oreders_screen.dart';
 import 'package:ecommerce/admin/Bindings/edit_product_bindings.dart';
 import 'package:ecommerce/admin/screens/edit%20product/Screens/edit_product_screen.dart';
 import 'package:ecommerce/screens/Order/Oreders_screen.dart';
@@ -49,6 +51,7 @@ class AppPages {
   static const adminusers = '/adminusers';
   static const admincategory = '/admincategory';
   static const adminaddproudct = '/adminaddproudct';
+  static const adminorder = '/adminorder';
   static const admineditproudct = '/admineditproudct';
 
   static final routes = [
@@ -128,6 +131,12 @@ class AppPages {
       binding: AddProductBinding(),
     ),
     GetPage(
+      name: adminorder,
+      page: () => AdminOrdersScreen(),
+      binding: AdminOrderBinding(),
+      
+    ),
+     GetPage(
       name: admineditproudct,
       page: () => EditProductScreen(),
       binding: DetailsBinding(),

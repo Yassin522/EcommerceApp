@@ -1,6 +1,7 @@
 import 'package:ecommerce/Controller/CartController/HomeController/homeController.dart';
 import 'package:ecommerce/models/product_color.dart';
 import 'package:ecommerce/screens/details/details_controller.dart';
+import 'package:ecommerce/screens/sign_in/Models/global_user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/models/Product.dart';
 import 'package:get/get.dart';
@@ -55,11 +56,25 @@ class _ProductImagesState extends State<ProductImages> {
                             ),
                           ),
                           SizedBox(height: getProportionateScreenWidth(20)),
-                          Text(
-                            c.productImages[c.selectedImage.value].name!,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: kPrimaryColor),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              GlobalUserInfo.user!.role_id == '1'
+                                  ? Text(
+                                      'عدد ${c.productImages[c.selectedImage.value].quantity.toString()} ',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          color: kPrimaryColor),
+                                    )
+                                  : SizedBox(
+                                      width: getProportionateScreenWidth(1)),
+                              Text(
+                                c.productImages[c.selectedImage.value].name!,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: kPrimaryColor),
+                              ),
+                            ],
                           ),
                           SizedBox(height: getProportionateScreenWidth(10)),
                           SingleChildScrollView(
