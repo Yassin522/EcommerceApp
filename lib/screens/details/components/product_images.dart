@@ -39,7 +39,6 @@ class _ProductImagesState extends State<ProductImages> {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(child: Text('Loading...'));
                 }
-
                 return c.ok.value == true
                     ? Column(
                         children: [

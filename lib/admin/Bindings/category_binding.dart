@@ -3,7 +3,7 @@ import 'package:get/instance_manager.dart';
 
 import '../screens/home/home_controller.dart';
 
-class AdminCategoryBindings extends Bindings {
+class AdminCategoryBindings implements Bindings {
   @override
   void dependencies() {
     // TODO: implement dependencies

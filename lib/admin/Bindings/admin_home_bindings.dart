@@ -2,7 +2,7 @@ import 'package:get/instance_manager.dart';
 
 import '../screens/home/home_controller.dart';
 
-class AdminHomeBindings extends Bindings {
+class AdminHomeBindings implements Bindings {
   @override
   void dependencies() {
     // TODO: implement dependencies

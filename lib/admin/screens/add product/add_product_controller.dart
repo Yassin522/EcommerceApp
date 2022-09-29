@@ -6,6 +6,7 @@ import 'package:ecommerce/admin/screens/add%20product/add_product_services.dart'
 import 'package:ecommerce/admin/screens/home/components/categories.dart';
 import 'package:ecommerce/models/category.dart';
 import 'package:ecommerce/screens/home/home_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/state_manager.dart';
 
 class AddProductController extends GetxController {
@@ -39,7 +40,7 @@ class AddProductController extends GetxController {
     var res = await service.addProduct(product);
     if (productColor.color != null) {
       productColor.product_id = res;
-      productColor.image = chosenImage;
+      productColor.img_url = chosenImage;
       var colorRes = await service.addColor(productColor);
       if (colorRes == true) {
         return true;
@@ -57,4 +58,8 @@ class AddProductController extends GetxController {
     await getCate();
     chosenCategory = categories[0];
   }
+
+  //?Edit product//
+
+  TextEditingController name = TextEditingController();
 }

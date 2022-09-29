@@ -11,14 +11,14 @@ class Product {
   int? categoryId;
 
   Product({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.image,
-    required this.status,
-    required this.size,
-    required this.price,
-    required this.categoryId,
+    this.id,
+    this.name,
+    this.description,
+    this.image,
+    this.status,
+    this.size,
+    this.price,
+    this.categoryId,
   });
 
   Product.fromJson(Map<String, dynamic> json) {
