@@ -81,7 +81,7 @@ class CustomBottomNavBar extends StatelessWidget {
                       : inActiveIconColor,
                   onPressed: role_id == '1'
                       ? () {
-                          Get.toNamed(AppPages.adminusers);
+                          Get.toNamed(AppPages.adminorder);
                         }
                       : () {
                           Get.toNamed(AppPages.orderdetails);
