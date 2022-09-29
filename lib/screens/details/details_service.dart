@@ -49,4 +49,19 @@ class DetailService {
 
     return productDetails;
   }
+
+  getProductsColorsAdmin(var id) async {
+    var response = await http.get(
+        Uri.parse(baseUrl + 'admin/product/color/show?product_id=$id'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        });
+
+    var res = jsonDecode(response.body);
+    List productColors = res['data'];
+
+    return productColors;
+  }
 }
