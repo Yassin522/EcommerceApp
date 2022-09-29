@@ -1,5 +1,6 @@
 import 'package:ecommerce/admin/screens/add%20product/add_product_controller.dart';
 import 'package:ecommerce/admin/screens/add%20product/components/Image_pick.dart';
+import 'package:ecommerce/admin/screens/edit%20product/components/edited_image.dart';
 import 'package:ecommerce/constants.dart';
 import 'package:ecommerce/models/category.dart';
 import 'package:ecommerce/screens/search/product_for_category.dart';
@@ -8,16 +9,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
-class AddProductScreen extends StatelessWidget {
-  AddProductScreen({
+import '../edit_product_controller.dart';
+
+class EditProductScreen extends StatelessWidget {
+  EditProductScreen({
     Key? key,
   }) : super(key: key);
   final _formKey = GlobalKey<FormState>();
-  var data = Get.parameters;
 
-  var _controller = Get.find<AddProductController>();
+  var _controller = Get.find<EditProductController>();
   @override
   Widget build(BuildContext context) {
+    print('-----------------------------------------------');
+    _controller.takeNewProduct();
+    print(_controller.newPro.name);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SizedBox(
@@ -32,7 +37,7 @@ class AddProductScreen extends StatelessWidget {
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    PickingImageButton(),
+                    EditedProductImage(),
                     SizedBox(height: getProportionateScreenHeight(20)),
                     GetBuilder(
                         init: AddProductController(),
@@ -41,11 +46,11 @@ class AddProductScreen extends StatelessWidget {
                             key: _formKey,
                             child: Column(
                               children: [
-                                AddProductField(
+                                EditProductField(
+                                  controller: _controller.name,
                                   label: 'اسم المنتج',
                                   hint: 'أدخل اسم المنتج',
                                   onChange: (value) {
-                                    _controller.product.name = value;
                                     _controller.update();
                                   },
                                   validator: (value) {
@@ -53,14 +58,13 @@ class AddProductScreen extends StatelessWidget {
                                       return kEmptyField;
                                     }
                                   },
-                                  value: _controller.product.name,
                                 ),
-                                AddProductField(
+                                EditProductField(
+                                  controller: _controller.description,
                                   kType: TextInputType.multiline,
                                   label: 'شرح عن المنتج',
                                   hint: 'أدخل شرح بسيط عن المنتج',
                                   onChange: (value) {
-                                    _controller.product.description = value;
                                     _controller.update();
                                   },
                                   validator: (value) {
@@ -68,13 +72,12 @@ class AddProductScreen extends StatelessWidget {
                                       return kEmptyField;
                                     }
                                   },
-                                  value: _controller.product.description,
                                 ),
-                                AddProductField(
+                                EditProductField(
+                                  controller: _controller.size,
                                   label: 'الحجم',
                                   hint: 'أدخل حجم للمنتج',
                                   onChange: (value) {
-                                    _controller.product.size = value;
                                     _controller.update();
                                   },
                                   validator: (value) {
@@ -82,7 +85,6 @@ class AddProductScreen extends StatelessWidget {
                                       return kEmptyField;
                                     }
                                   },
-                                  value: _controller.product.size,
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(10),
@@ -103,15 +105,14 @@ class AddProductScreen extends StatelessWidget {
                                               BorderRadius.circular(10),
                                         ),
                                         child: GetBuilder(
-                                          init: AddProductController(),
-                                          builder: (AddProductController
-                                              controller) {
+                                          init: EditProductController(),
+                                          builder: (_) {
                                             return DropdownButton<Category>(
                                               value: _controller.chosenCategory,
                                               borderRadius:
                                                   BorderRadius.circular(20),
                                               onChanged: (value) {
-                                                controller.updateCate(value!);
+                                                _controller.updateCate(value!);
                                               },
                                               items: List.generate(
                                                   _controller.categories.length,
@@ -137,12 +138,12 @@ class AddProductScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                AddProductField(
+                                EditProductField(
+                                  controller: _controller.price,
                                   kType: TextInputType.number,
                                   label: 'السعر',
                                   hint: 'أدخل سعر المنتج',
                                   onChange: (value) {
-                                    _controller.product.price = value;
                                     _controller.update();
                                   },
                                   validator: (value) {
@@ -150,32 +151,70 @@ class AddProductScreen extends StatelessWidget {
                                       return kEmptyField;
                                     }
                                   },
-                                  value: _controller.product.price,
                                 ),
-                                AddProductField(
-                                  label: 'النكهة ',
-                                  hint: 'أدخل نكهة المنتج(اختياري)',
-                                  onChange: (value) {
-                                    _controller.productColor.color = value;
-                                    _controller.update();
-                                  },
-                                  validator: (value) {},
-                                  value: _controller.product.name,
-                                ),
-                                AddProductField(
-                                  kType: TextInputType.number,
-                                  label: 'الكمية',
-                                  hint: 'أدخل الكمية المتوافرة من المنتج',
-                                  onChange: (value) {
-                                    _controller.productColor.quantity = value;
-                                    _controller.update();
-                                  },
-                                  validator: (value) {
-                                    if (value.isEmpty) {
-                                      return kEmptyField;
-                                    }
-                                  },
-                                  value: _controller.product.name,
+                                Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal:
+                                              getProportionateScreenWidth(10),
+                                          vertical:
+                                              getProportionateScreenHeight(5),
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: kPrimaryColor.withOpacity(0.1),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        child: GetBuilder(
+                                          init: EditProductController(),
+                                          builder: (_) {
+                                            return DropdownButton<String>(
+                                                value: _controller.status,
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                onChanged: (value) {
+                                                  _controller
+                                                      .updateStatus(value!);
+                                                },
+                                                items: [
+                                                  DropdownMenuItem(
+                                                    value: 'متوافر',
+                                                    child: Text(
+                                                      'متوافر',
+                                                    ),
+                                                    onTap: () {
+                                                      _controller.updateStatus(
+                                                          'متوافر');
+                                                    },
+                                                  ),
+                                                  DropdownMenuItem(
+                                                    value: 'غير متوافر',
+                                                    child: Text(
+                                                      'غير متوافر',
+                                                    ),
+                                                    onTap: () {
+                                                      _controller.updateStatus(
+                                                          'غير متوافر');
+                                                    },
+                                                  ),
+                                                ]);
+                                          },
+                                        ),
+                                      ),
+                                      Text(
+                                        'هل لا يزال المنتج متوافر؟',
+                                        style: TextStyle(
+                                          color: Colors.grey.shade800,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -193,16 +232,18 @@ class AddProductScreen extends StatelessWidget {
                                 MaterialStateProperty.all(kPrimaryColor)),
                         onPressed: () async {
                           bool state = false;
-                          if (_controller.chosenCategory != null) {
+                          if (_controller.chosenCategory != null &&
+                              (_controller.chosenImage != null ||
+                                  _controller.image != null)) {
                             state = true;
                           }
                           if (_formKey.currentState!.validate() && state) {
                             _formKey.currentState!.save();
                             print('ok');
                             EasyLoading.show(dismissOnTap: true);
-                            var res = await _controller.addPoduct();
+                            var res = await _controller.updateProduct();
                             if (res == true) {
-                              EasyLoading.showInfo('تم إضافة منتج جديد بنجاح!');
+                              EasyLoading.showInfo('تم تحديث المنتج بنجاح!');
                             } else {
                               EasyLoading.showError(res);
                             }
@@ -210,9 +251,7 @@ class AddProductScreen extends StatelessWidget {
                             print('Is work');
                           }
                         },
-                        child: data['edit'] == null
-                            ? Text('إضافة المنتج')
-                            : Text('تحديث المنتج'),
+                        child: Text('تحديث المنتج'),
                       ),
                     ),
                     SizedBox(
@@ -229,8 +268,8 @@ class AddProductScreen extends StatelessWidget {
   }
 }
 
-class AddProductField extends StatelessWidget {
-  AddProductField({
+class EditProductField extends StatelessWidget {
+  EditProductField({
     Key? key,
     this.hint,
     this.label,
@@ -238,6 +277,7 @@ class AddProductField extends StatelessWidget {
     this.validator,
     this.value,
     this.kType,
+    this.controller,
   }) : super(key: key);
   final onChange;
   final validator;
@@ -245,11 +285,13 @@ class AddProductField extends StatelessWidget {
   final hint;
   final value;
   final kType;
+  final controller;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: TextFormField(
+        controller: controller,
         keyboardType: kType != null ? kType : TextInputType.text,
         textDirection: RegExp(r'^[A-Za-z0-9]+$').hasMatch(value ?? '')
             ? TextDirection.ltr

@@ -3,7 +3,12 @@ import 'package:ecommerce/Bindings/admin_order_binding.dart';
 import 'package:ecommerce/Bindings/details_binding.dart';
 import 'package:ecommerce/Bindings/orderdetailsBinding.dart';
 import 'package:ecommerce/admin/Bindings/category_binding.dart';
+<<<<<<< HEAD
 import 'package:ecommerce/admin/screens/Order/Oreders_screen.dart';
+=======
+import 'package:ecommerce/admin/Bindings/edit_product_bindings.dart';
+import 'package:ecommerce/admin/screens/edit%20product/Screens/edit_product_screen.dart';
+>>>>>>> a48439d1d39e0fa26213cc830e1f7ade909f169a
 import 'package:ecommerce/screens/Order/Oreders_screen.dart';
 import 'package:ecommerce/screens/cart/cart_screen.dart';
 import 'package:ecommerce/Bindings/home_binding.dart';
@@ -49,7 +54,11 @@ class AppPages {
   static const adminusers = '/adminusers';
   static const admincategory = '/admincategory';
   static const adminaddproudct = '/adminaddproudct';
+<<<<<<< HEAD
   static const adminorder = '/adminorder';
+=======
+  static const admineditproudct = '/admineditproudct';
+>>>>>>> a48439d1d39e0fa26213cc830e1f7ade909f169a
 
   static final routes = [
     GetPage(
@@ -117,20 +126,26 @@ class AppPages {
       page: () => UsersScreen(),
       binding: UsersBindings(),
     ),
-     GetPage(
+    GetPage(
       name: admincategory,
       page: () => SpecialOffers(),
       binding: AdminCategoryBindings(),
-     ),
+    ),
     GetPage(
       name: adminaddproudct,
       page: () => AddProductScreen(),
       binding: AddProductBinding(),
     ),
     GetPage(
+<<<<<<< HEAD
       name: adminorder,
       page: () => AdminOrdersScreen(),
       binding: AdminOrderBinding(),
+=======
+      name: admineditproudct,
+      page: () => EditProductScreen(),
+      binding: DetailsBinding(),
+>>>>>>> a48439d1d39e0fa26213cc830e1f7ade909f169a
     ),
   ];
 }

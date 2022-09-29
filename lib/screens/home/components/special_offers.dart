@@ -87,10 +87,9 @@ class SpecialOfferCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: Stack(
               children: [
-
-              Image(image: NetworkImage('$imagebaseUrl$image'),  fit: BoxFit.cover),
-              
-
+                Image(
+                    image: NetworkImage('$imagebaseUrl$image'),
+                    fit: BoxFit.cover),
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(

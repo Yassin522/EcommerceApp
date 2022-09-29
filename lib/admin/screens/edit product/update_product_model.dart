@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
 // ignore: file_names
-class AddProductModel {
+class UpdateProductModel {
   String? name;
   File? img_url;
   String? description;
@@ -13,4 +13,5 @@ class AddProductModel {
   String? price;
   String? category_id;
   String? status;
+  String? product_id;
 }

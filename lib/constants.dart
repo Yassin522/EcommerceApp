@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'size_config.dart';
 
-String baseUrl = 'http://192.168.43.86:8000/api/';
-String imagebaseUrl = 'http://192.168.43.86:8000';
+String baseUrl = 'http://192.168.43.171:8000/api/';
+String imagebaseUrl = 'http://192.168.43.171:8000';
+//192.168.43.171
 
 const kPrimaryColor = Color.fromARGB(255, 33, 214, 124);
 const kPrimaryLightColor = Color(0xFFFFECDF);
@@ -59,4 +60,9 @@ Map<String, String> header(String token) {
     'Accept': 'application/json',
     'Authorization': 'Bearer $token',
   };
+}
+
+catchPrint(e) {
+  print('Wleeeeeeeeeeeeeee');
+  print(e);
 }
