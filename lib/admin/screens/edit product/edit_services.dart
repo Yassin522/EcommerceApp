@@ -97,4 +97,25 @@ class EditProductServices {
       return null;
     }
   }
+
+  deleteColor(String id) async {
+    try {
+      var headers = {'Authorization': 'Bearer ${GlobalUserInfo.access_token}'};
+      var respone = await http.delete(
+          Uri.parse('${ServicesConfig.domainName}product/color/delete/$id'),
+          headers: headers);
+
+      if (respone.statusCode == 200) {
+        return true;
+      } else {
+        print(respone.statusCode);
+        print('ooooooooooooooooo');
+        return null;
+      }
+    } catch (e) {
+      print('wleeeeeeeeeeeeeeeee');
+      print(e);
+      return null;
+    }
+  }
 }

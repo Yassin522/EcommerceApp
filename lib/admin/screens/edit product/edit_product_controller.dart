@@ -110,6 +110,11 @@ class EditProductController extends GetxController {
     quantity?.text = newColor.quantity!;
   }
 
+  deleteColor(String id) async {
+    var res = editServ.deleteColor(id);
+    return res;
+  }
+
   @override
   void onInit() async {
     // TODO: implement onInit

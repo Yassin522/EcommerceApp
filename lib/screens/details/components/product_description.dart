@@ -438,21 +438,38 @@ class ProductActionButtons extends StatelessWidget {
           ),
           PopupMenuItem(
             value: 'حذف نكهة',
-            onTap: () {},
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Icon(
-                  Icons.delete,
-                  color: Colors.redAccent,
-                ),
-                SizedBox(
-                  width: getProportionateScreenWidth(4),
-                ),
-                Text(
-                  'حذف النكهة',
-                ),
-              ],
+            child: GestureDetector(
+              onTap: () async {
+                Get.back();
+                var det = Get.find<DetailController>();
+                var id = det
+                    .productImages.value[det.selectedImage.value].productColorId
+                    .toString();
+                print('idddddddddddddddddddddddddddd' + id);
+                EasyLoading.show(dismissOnTap: true);
+                var res = await _editController.deleteColor(id);
+                det.update();
+                if (res == true) {
+                  EasyLoading.showSuccess('تم حذف النكهة بنجاح');
+                } else {
+                  EasyLoading.showError('حدث خطأ ما الرجاء المحاولة مرة أخرى');
+                }
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Icon(
+                    Icons.delete,
+                    color: Colors.redAccent,
+                  ),
+                  SizedBox(
+                    width: getProportionateScreenWidth(4),
+                  ),
+                  Text(
+                    'حذف النكهة',
+                  ),
+                ],
+              ),
             ),
           ),
         ];
