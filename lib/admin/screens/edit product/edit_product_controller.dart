@@ -57,6 +57,13 @@ class EditProductController extends GetxController {
     update();
   }
 
+  editColorImage(file) {
+    colrImage = File(file.path);
+    isEdit = false;
+    print(file.path);
+    update();
+  }
+
   updateProduct() async {
     var product = getNewProduct();
     var res = await editServ.updateProduct(product);
@@ -105,7 +112,21 @@ class EditProductController extends GetxController {
     return res;
   }
 
+  updateColor(String id) async {
+    ProductColorModel newColor = ProductColorModel();
+    newColor.color = color?.text;
+    if (colrImage is File) newColor.img_url = colrImage;
+    newColor.product_id = id;
+    newColor.quantity = quantity?.text;
+    print(newColor.tooString());
+    var res = await editServ.updateColor(newColor);
+
+    return res;
+  }
+
   takeColor(ProductColorModel newColor) {
+    print(newColor.color);
+    print(newColor.quantity);
     color?.text = newColor.color!;
     quantity?.text = newColor.quantity!;
   }

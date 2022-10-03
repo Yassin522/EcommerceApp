@@ -118,4 +118,38 @@ class EditProductServices {
       return null;
     }
   }
+
+  updateColor(ProductColorModel color) async {
+    try {
+      var headers = header(GlobalUserInfo.access_token.toString());
+      var request = http.MultipartRequest(
+          'POST',
+          Uri.parse(ServicesConfig.domainName +
+              'product/color/update/${color.product_id}'));
+      request.fields.addAll({'color': color.color!});
+      request.fields.addAll({'quantity': color.quantity!});
+      request.fields.addAll({'product_id': color.product_id!});
+      if (color.img_url != null) {
+        request.files.add(await http.MultipartFile.fromPath(
+            'img_url', color.img_url!.path.toString()));
+      }
+
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        print('oooooooooooooooooooooooooo');
+        print(response.statusCode);
+        print(await response.stream.bytesToString());
+        return null;
+      }
+    } catch (e) {
+      print('Wleeeeeeeeeeeeeee');
+      print(e);
+      return null;
+    }
+  }
 }

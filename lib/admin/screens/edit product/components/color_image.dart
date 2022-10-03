@@ -58,7 +58,7 @@ class ColorImage extends StatelessWidget {
                             color: kPrimaryColor.withOpacity(0.15),
                             image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: _controller.isEdit
+                                image: _controller.colrImage is String
                                     ? NetworkImage(
                                             '${imagebaseUrl}${_controller.colrImage}')
                                         as ImageProvider
