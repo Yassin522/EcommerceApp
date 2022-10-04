@@ -316,7 +316,9 @@ class ProductActionButtons extends StatelessWidget {
                 var det = Get.find<DetailController>();
                 newColor.color =
                     det.productImages.value[det.selectedImage.value].name;
-
+                newColor.quantity = det
+                    .productImages.value[det.selectedImage.value].quantity
+                    .toString();
                 _editController.colrImage =
                     det.productImages.value[det.selectedImage.value].image;
                 newColor.product_id = product!.id.toString();
@@ -393,10 +395,10 @@ class ProductActionButtons extends StatelessWidget {
                                   print('ok');
                                   EasyLoading.show(dismissOnTap: true);
                                   var res = await _editController
-                                      .addNewcolor(product!.id.toString());
+                                      .updateColor(product!.id.toString());
                                   if (res == true) {
                                     EasyLoading.showInfo(
-                                        'تم إضافة نكهة جديدة بنجاح!');
+                                        'تم تعديل النكهة الحالية');
                                     var detail = Get.find<DetailController>();
                                     detail.update();
                                   } else {
@@ -407,7 +409,7 @@ class ProductActionButtons extends StatelessWidget {
                                   print('Is work');
                                 }
                               },
-                              child: Text('إضافة النكهة'),
+                              child: Text('تعديل النكهة'),
                             ),
                           ),
                           SizedBox(
@@ -438,21 +440,38 @@ class ProductActionButtons extends StatelessWidget {
           ),
           PopupMenuItem(
             value: 'حذف نكهة',
-            onTap: () {},
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Icon(
-                  Icons.delete,
-                  color: Colors.redAccent,
-                ),
-                SizedBox(
-                  width: getProportionateScreenWidth(4),
-                ),
-                Text(
-                  'حذف النكهة',
-                ),
-              ],
+            child: GestureDetector(
+              onTap: () async {
+                Get.back();
+                var det = Get.find<DetailController>();
+                var id = det
+                    .productImages.value[det.selectedImage.value].productColorId
+                    .toString();
+                print('idddddddddddddddddddddddddddd' + id);
+                EasyLoading.show(dismissOnTap: true);
+                var res = await _editController.deleteColor(id);
+                det.update();
+                if (res == true) {
+                  EasyLoading.showSuccess('تم حذف النكهة بنجاح');
+                } else {
+                  EasyLoading.showError('حدث خطأ ما الرجاء المحاولة مرة أخرى');
+                }
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Icon(
+                    Icons.delete,
+                    color: Colors.redAccent,
+                  ),
+                  SizedBox(
+                    width: getProportionateScreenWidth(4),
+                  ),
+                  Text(
+                    'حذف النكهة',
+                  ),
+                ],
+              ),
             ),
           ),
         ];
