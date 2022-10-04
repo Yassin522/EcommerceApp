@@ -16,15 +16,13 @@ class Body extends StatefulWidget {
   _BodyState createState() => _BodyState();
 }
 
-var demoCarts = _controller.cartItems.value;
-var controller = Get.find<CartController>();
+var c = Get.find<CartController>();
 
 class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
-    _controller.GetTotalPrice();
-    print("image");
-    print(myItems.length);
+    c.GetTotalPrice();
+
     return Padding(
       padding:
           EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
@@ -85,7 +83,7 @@ class _BodyState extends State<Body> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        '${c.totalPrice.value.toStringAsFixed(3)}',
+                        '${c.totalPrice.value.toStringAsFixed(3)} ل.س',
                         style: TextStyle(
                             color: kPrimaryColor,
                             fontSize: 25,
@@ -111,11 +109,11 @@ class _BodyState extends State<Body> {
           height: getProportionateScreenHeight(50),
           child: MaterialButton(
             onPressed: () {
-              controller.addorder(myItems);
+              c.addorder(myItems);
             },
             child: Center(
               child: Text(
-                'ارسال الفاتورة',
+                'ارسال الطلبية',
                 textDirection: TextDirection.rtl,
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),

@@ -13,30 +13,28 @@ class CartController extends GetxController {
   ].obs;
   var totalPrice = 0.0.obs;
   List<Cart> allitems = [];
-  RxBool ok=false.obs;
+  RxBool ok = false.obs;
 
-var cartservice =CartService();
+  var cartservice = CartService();
 
   GetTotalPrice() {
     totalPrice.value = 0.0;
     for (var i = 0; i < myItems.length; i++) {
       totalPrice.value += myItems[i].price * myItems[i].numOfItem;
     }
-    print(totalPrice.value);
-    print("total");
+
     update();
   }
 
-  addorder(List<Cart> allCart)async{
-      ok.value=await cartservice.addOrder(allCart);
-      print("tmmm");
-      print(ok.value);
+  addorder(List<Cart> allCart) async {
+    ok.value = await cartservice.addOrder(allCart);
+    print("tmmm");
+    print(ok.value);
   }
 
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    print(allitems);
   }
 }

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
+import 'package:ecommerce/screens/sign_in/Models/global_user_info.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
@@ -7,28 +9,26 @@ import '../../constants.dart';
 import '../../models/Cart.dart';
 
 class CartService {
-  String token =
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2MzQzNjcxMSwiZXhwIjoxNjYzNDQwMzExLCJuYmYiOjE2NjM0MzY3MTEsImp0aSI6IndKUVVHa1M0QWhoQng0SnUiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.Zg8b-QHQY7sFfyz-6QPDBJ4vrmmti1wkdX0HOUwGT8s';
+  String token = GlobalUserInfo.access_token!;
 
   addOrder(List<Cart> allProducts) async {
     try {
       Map<String, dynamic> data = {};
-      String date = DateFormat("yyyy/MM/dd").format(DateTime.now());
+      String date = DateFormat("yyyy-MM-dd").format(DateTime.now());
+
+      print(date);
       data.addAll({
         'date': date,
+        'list_details': allProducts,
       });
 
       for (int i = 0; i < allProducts.length; i++) {
         data.addAll({
-          'list_details[$i][product_color_id]': allProducts[i].product_id,
-          'list_details[$i][quantity]': allProducts[i].numOfItem,
-          'list_details[$i][current_price]': allProducts[i].price,
+          'product_color_id': allProducts[i].product_id,
+          'quantity': allProducts[i].numOfItem,
+          'current_price': allProducts[i].price,
         });
       }
-
-      print("first");
-      print(data);
-      print(jsonDecode(date));
       var response = await http.post(
         Uri.parse(baseUrl + 'order/store'),
         headers: {
@@ -44,6 +44,7 @@ class CartService {
       if (response.statusCode == 200) {
         return true;
       }
+      return true;
     } catch (e) {
       print(e);
       return false;

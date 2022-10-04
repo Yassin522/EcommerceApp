@@ -8,7 +8,7 @@ import '../../../size_config.dart';
 import '../cart_screen.dart';
 
 class CartCard extends StatelessWidget {
-  const CartCard({
+  CartCard({
     Key? key,
     required this.cart,
     required this.imageUrl,
@@ -16,12 +16,13 @@ class CartCard extends StatelessWidget {
 
   final Cart cart;
   final String imageUrl;
+  var c = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
         init: CartController(),
-        builder: (CartController c) {
+        builder: (_) {
           return Row(
             children: [
               SizedBox(
@@ -34,8 +35,7 @@ class CartCard extends StatelessWidget {
                       color: Color(0xFFF5F6F9),
                       borderRadius: BorderRadius.circular(15),
                       image: DecorationImage(
-                        image:
-                            NetworkImage('$imagebaseUrl$imageUrl'),
+                        image: NetworkImage('$imagebaseUrl$imageUrl'),
                       ),
                     ),
                     // child: Image.asset(cart.product.images[0]),
@@ -54,7 +54,7 @@ class CartCard extends StatelessWidget {
                   SizedBox(height: 10),
                   Text.rich(
                     TextSpan(
-                      text: "\$${cart.price}",
+                      text: "${cart.price} ل.س",
                       style: TextStyle(
                           fontWeight: FontWeight.w600, color: kPrimaryColor),
                       children: [

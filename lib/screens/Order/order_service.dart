@@ -1,25 +1,26 @@
 import 'dart:convert';
-import 'package:ecommerce/models/order_detail.dart';
 import 'package:http/http.dart' as http;
 import 'package:ecommerce/constants.dart';
 
 import '../../models/Order.dart';
+import '../../models/order_details.dart';
 import '../sign_in/Models/global_user_info.dart';
 
 class OrderService {
-  var url = Uri.parse(baseUrl + 'order/show?user_id=1');
-  String token =
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY2NDEwNzM5MywiZXhwIjoxNjY0MTEwOTkzLCJuYmYiOjE2NjQxMDczOTMsImp0aSI6IlBUYXVGOFdGUFNvWDhMNkQiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.mDj8GxrKWJVYodYBu68uATIKSi6jUryTDDk05gPsFNg';
+  String token = GlobalUserInfo.access_token!;
 
   getOrders(String id) async {
     try {
-      var response = await http.get(url, headers: {
+      var response = await http
+          .get(Uri.parse(baseUrl + 'order/show?user_id=$id'), headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',
       });
 
       var res = jsonDecode(response.body);
+      print("allorders list ..");
+      print(res);
 
       List allOrders = res['data']
           .map(
@@ -33,6 +34,61 @@ class OrderService {
     } catch (e) {
       print(e);
       return [];
+    }
+  }
+
+  orderDetails(int id) async {
+    try {
+      var response = await http.get(
+          Uri.parse(
+            '${baseUrl}user/order/detail/show?order_id=$id',
+          ),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          });
+
+      var res = jsonDecode(response.body);
+
+      List allOrderdetails = res['data']
+          .map(
+            (item) => OrderDetail.fromJson(item),
+          )
+          .toList();
+
+      return allOrderdetails;
+    } catch (e) {
+      print(e);
+
+      return [];
+    }
+  }
+
+  orderDetailsImages(int id) async {
+    try {
+      var response = await http.get(
+          Uri.parse(
+            '${baseUrl}user/product/color/show?id=$id',
+          ),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          });
+
+      var res = jsonDecode(response.body);
+
+      String image = res['data'][0]['image'][0]['image'];
+      print('image');
+      print(image);
+
+      return image;
+    } catch (e) {
+      print(e);
+      print("nooooo");
+
+      return '';
     }
   }
 }
