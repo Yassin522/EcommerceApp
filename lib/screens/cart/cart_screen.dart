@@ -10,7 +10,7 @@ import '../../enums.dart';
 import 'components/body.dart';
 import 'components/check_out_card.dart';
 
-var controller = Get.find<CartController>();
+var c = Get.find<CartController>();
 List<Cart> myItems=[];
 
 class CartScreen extends StatelessWidget {
