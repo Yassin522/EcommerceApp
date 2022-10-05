@@ -81,9 +81,13 @@ class SearchPage extends SearchDelegate {
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
                   onTap: () {
+                    print('AHHHHHHHHHHHHHHHHHHHHHHHHHH');
+                    print(sug[index].name);
                     print('id is :' + sug[index].id.toString());
-                    Get.toNamed(AppPages.cateSearch,
-                        parameters: {'id': sug[index].id.toString()});
+                    Get.toNamed(AppPages.cateSearch, parameters: {
+                      'name': sug[index].name,
+                      'id': sug[index].id.toString(),
+                    });
                   },
                   child: Container(
                     height: getProportionateScreenHeight(50),

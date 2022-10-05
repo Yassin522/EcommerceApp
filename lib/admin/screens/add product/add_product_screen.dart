@@ -19,6 +19,16 @@ class AddProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: kPrimaryColor,
+        leading: BackButton(
+          color: Colors.white,
+          onPressed: () {
+            Get.back();
+          },
+        ),
+        title: Text('إضافة منتج جديد'),
+      ),
       backgroundColor: Colors.white,
       body: SizedBox(
         height: SizeConfig.screenHeight,

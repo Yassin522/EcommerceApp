@@ -20,4 +20,6 @@ class UsersController extends GetxController {
     update();
     return res;
   }
+
+  updateUserPassword() {}
 }

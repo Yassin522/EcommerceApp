@@ -4,6 +4,8 @@ import 'dart:typed_data';
 import 'package:ecommerce/admin/screens/home/components/category_card.dart';
 import 'package:ecommerce/admin/screens/home/components/category_controller.dart';
 import 'package:ecommerce/constants.dart';
+import 'package:ecommerce/routes/app_routes.dart';
+import 'package:ecommerce/screens/search/product_for_category.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -169,7 +171,10 @@ class SpecialOffers extends StatelessWidget {
                                 }),
                             radius: 10.0);
                       },
-                      icon: Icon(Icons.add),
+                      icon: Icon(
+                        Icons.add,
+                        size: 30,
+                      ),
                     );
                   }),
               SizedBox(width: getProportionateScreenWidth(15)),
@@ -190,14 +195,14 @@ class SpecialOffers extends StatelessWidget {
                     future: controller.loadCategories(),
                     builder: ((context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: Text('Loading...'));
+                        return LoadingWidget();
                       }
                       return controller.categories.isEmpty
                           ? const SizedBox(
                               height: 50,
                               child: Center(
                                 child: Text(
-                                  'NO Categories',
+                                  'لا توجد فئات حالياً',
                                 ),
                               ),
                             )
@@ -209,7 +214,18 @@ class SpecialOffers extends StatelessWidget {
                                   category: controller.categories[index].name,
                                   id: controller.categories[index].id,
                                   press: () {
+                                    print('Yes is it');
                                     print(controller.categories[index].id);
+                                    Get.toNamed(
+                                      AppPages.cateSearch,
+                                      parameters: {
+                                        'id': controller
+                                            .categories.value[index].id
+                                            .toString(),
+                                        'name': controller
+                                            .categories.value[index].name,
+                                      },
+                                    );
                                   },
                                 ),
                               ),

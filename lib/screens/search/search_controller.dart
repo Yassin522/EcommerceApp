@@ -8,5 +8,6 @@ class SearchController extends GetxController {
   var id = '';
   getProductsFotCateegory() async {
     products = await services.getProductsForCategory(id);
+    update();
   }
 }

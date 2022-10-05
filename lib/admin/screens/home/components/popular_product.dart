@@ -1,4 +1,6 @@
 import 'package:ecommerce/routes/app_routes.dart';
+import 'package:ecommerce/screens/home/hpme_controller.dart';
+import 'package:ecommerce/screens/search/product_for_category.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ecommerce/components/product_card.dart';
@@ -39,15 +41,14 @@ class PopularProducts extends StatelessWidget {
         SizedBox(height: getProportionateScreenWidth(20)),
         GetBuilder(
             init: AdminHomeController(),
-            builder: (AdminHomeController c) {
+            builder: (_) {
               return FutureBuilder(
-                future: c.loadProducts(),
+                future: _controller.loadProducts(),
                 builder: ((context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: Text('Loading...'));
+                    return LoadingWidget();
                   }
-
-                  return c.productss.isEmpty
+                  return _controller.productss.isEmpty
                       ? const SizedBox(
                           height: 50,
                           child: Center(
@@ -57,7 +58,6 @@ class PopularProducts extends StatelessWidget {
                           ),
                         )
                       :
-
                       /*Row(
           children: [
             ...List.generate(
@@ -70,11 +70,11 @@ class PopularProducts extends StatelessWidget {
             SizedBox(width: getProportionateScreenWidth(20)),
           ],
         );*/
-
                       GridView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
-                          itemCount: c.productss.length,
+                          itemCount: _controller.productss.length,
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
@@ -82,8 +82,8 @@ class PopularProducts extends StatelessWidget {
                             childAspectRatio: 0.75,
                             crossAxisSpacing: 15,
                           ),
-                          itemBuilder: (context, index) =>
-                              ProductCard(product: c.productss[index]),
+                          itemBuilder: (context, index) => ProductCard(
+                              product: _controller.productss[index]),
                         );
                 }),
               );

@@ -33,47 +33,46 @@ class Body extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Expanded(
-                  flex: 3,
-                  child: SizedBox(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: getProportionateScreenHeight(180),
-                          width: getProportionateScreenWidth(180),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                          ),
+                SizedBox(
+                  height: Get.size.height * .35,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: getProportionateScreenHeight(180),
+                        width: getProportionateScreenWidth(180),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
                         ),
-                        SizedBox(
-                          height: getProportionateScreenHeight(20),
-                        ),
-                        Center(
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: getProportionateScreenHeight(75),
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                'Name',
-                                style: TextStyle(
-                                  color: kPrimaryColor,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                      ),
+                      SizedBox(
+                        height: getProportionateScreenHeight(20),
+                      ),
+                      Center(
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: getProportionateScreenHeight(75),
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              'Name',
+                              style: TextStyle(
+                                color: kPrimaryColor,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-                Expanded(
-                  flex: 3,
+                SizedBox(
+                  height: Get.size.height * .5,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       DrawerOption(
                         label: 'معلومات المتجر',
@@ -103,7 +102,6 @@ class Body extends StatelessWidget {
                     ],
                   ),
                 ),
-                Expanded(flex: 1, child: SizedBox()),
               ],
             ),
           ),
