@@ -54,277 +54,285 @@ class Body extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const LoadingWidget();
                 } else {
-                  print(_controller.users.length);
-                  return GetBuilder(
-                    init: UsersController(),
-                    builder: (_) {
-                      return ListView.builder(
-                        itemCount: _controller.users.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          var item = _controller.users[index];
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: GestureDetector(
-                              onLongPress: () {
-                                Get.dialog(Center(
-                                  child: Container(
-                                    height: getProportionateScreenHeight(150),
-                                    width: getProportionateScreenWidth(
-                                        SizeConfig.screenWidth * .9),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              Get.back();
-                                              Get.defaultDialog(
-                                                title: 'حذف مستخدم',
-                                                content: Center(
-                                                  child: Text(
-                                                    'هل أنت متأكد أنك تريد حذف هذا المستخدم',
-                                                    style: TextStyle(
-                                                      color:
-                                                          Colors.grey.shade800,
-                                                      fontSize: 16,
+                  if (_controller.users.isNotEmpty) {
+                    return GetBuilder(
+                      init: UsersController(),
+                      builder: (_) {
+                        return ListView.builder(
+                          itemCount: _controller.users.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var item = _controller.users[index];
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GestureDetector(
+                                onLongPress: () {
+                                  Get.dialog(Center(
+                                    child: Container(
+                                      height: getProportionateScreenHeight(150),
+                                      width: getProportionateScreenWidth(
+                                          SizeConfig.screenWidth * .9),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                Get.back();
+                                                Get.defaultDialog(
+                                                  title: 'حذف مستخدم',
+                                                  content: Center(
+                                                    child: Text(
+                                                      'هل أنت متأكد أنك تريد حذف هذا المستخدم',
+                                                      style: TextStyle(
+                                                        color: Colors
+                                                            .grey.shade800,
+                                                        fontSize: 16,
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                                confirm: ElevatedButton(
-                                                  onPressed: () async {
-                                                    Get.back();
-                                                    EasyLoading.show(
-                                                        dismissOnTap: true);
-                                                    var res = await _controller
-                                                        .deleteUser(
-                                                            item.id.toString(),
-                                                            index);
-                                                    if (res == null) {
-                                                      EasyLoading.showError(
-                                                          'حدث خطأ ما ارجاء المحاولة مرة أخرى');
-                                                    } else {
-                                                      EasyLoading.showSuccess(
-                                                        'تم حذف المستخدم ',
-                                                      );
-                                                    }
-                                                  },
-                                                  style: ButtonStyle(
-                                                    backgroundColor:
-                                                        MaterialStateProperty
-                                                            .all(
-                                                      Colors.redAccent,
+                                                  confirm: ElevatedButton(
+                                                    onPressed: () async {
+                                                      Get.back();
+                                                      EasyLoading.show(
+                                                          dismissOnTap: true);
+                                                      var res = await _controller
+                                                          .deleteUser(
+                                                              item.id
+                                                                  .toString(),
+                                                              index);
+                                                      if (res == null) {
+                                                        EasyLoading.showError(
+                                                            'حدث خطأ ما ارجاء المحاولة مرة أخرى');
+                                                      } else {
+                                                        EasyLoading.showSuccess(
+                                                          'تم حذف المستخدم ',
+                                                        );
+                                                      }
+                                                    },
+                                                    style: ButtonStyle(
+                                                      backgroundColor:
+                                                          MaterialStateProperty
+                                                              .all(
+                                                        Colors.redAccent,
+                                                      ),
+                                                    ),
+                                                    child: const Text(
+                                                      'تأكيد',
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
                                                     ),
                                                   ),
-                                                  child: const Text(
-                                                    'تأكيد',
+                                                  cancel: ElevatedButton(
+                                                    onPressed: () {
+                                                      Get.back();
+                                                    },
+                                                    style: ButtonStyle(
+                                                      backgroundColor:
+                                                          MaterialStateProperty
+                                                              .all(
+                                                        Colors.white,
+                                                      ),
+                                                    ),
+                                                    child: Text(
+                                                      'إالغاء الأمر',
+                                                      style: TextStyle(
+                                                        color: Colors
+                                                            .grey.shade800,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                              style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all(
+                                                        Colors.redAccent),
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Icon(
+                                                    Icons.delete_outline,
+                                                    color: Colors.white,
+                                                  ),
+                                                  SizedBox(width: 5),
+                                                  Text(
+                                                    'حذف المستخدم',
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold,
                                                     ),
                                                   ),
-                                                ),
-                                                cancel: ElevatedButton(
-                                                  onPressed: () {
-                                                    Get.back();
-                                                  },
-                                                  style: ButtonStyle(
-                                                    backgroundColor:
-                                                        MaterialStateProperty
-                                                            .all(
-                                                      Colors.white,
+                                                ],
+                                              ),
+                                            ),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                Get.back();
+                                                Get.defaultDialog(
+                                                    textConfirm: 'تأكيد',
+                                                    title:
+                                                        'تغيير كلمة مرور المستخدم',
+                                                    textCancel: 'إالغاء',
+                                                    content: Form(
+                                                      key: _formKey,
+                                                      child: Column(
+                                                        children: [
+                                                          NewPasswordFeild(
+                                                            onChange: (value) {
+                                                              _controller
+                                                                      .oldPassword =
+                                                                  value;
+                                                            },
+                                                            validator: (value) {
+                                                              if (value
+                                                                  .isEmpty) {
+                                                                return kPassNullError;
+                                                              }
+                                                            },
+                                                            label:
+                                                                'كلمة المرور القديمة',
+                                                            hint:
+                                                                'أدخل كلمة المرور القديمة',
+                                                          ),
+                                                          SizedBox(
+                                                            height:
+                                                                getProportionateScreenHeight(
+                                                                    20),
+                                                          ),
+                                                          NewPasswordFeild(
+                                                            onChange: (value) {
+                                                              _controller
+                                                                      .newPassword =
+                                                                  value;
+                                                            },
+                                                            validator: (value) {
+                                                              if (value
+                                                                  .isEmpty) {
+                                                                return kPassNullError;
+                                                              }
+                                                            },
+                                                            label:
+                                                                'كلمة المرور الجديدة',
+                                                            hint:
+                                                                'أدخل كلمة المرور الجديدة',
+                                                          ),
+                                                          SizedBox(
+                                                            height:
+                                                                getProportionateScreenHeight(
+                                                                    20),
+                                                          ),
+                                                          NewPasswordFeild(
+                                                            onChange:
+                                                                (value) {},
+                                                            validator: (value) {
+                                                              if (value !=
+                                                                  _controller
+                                                                      .newPassword) {
+                                                                return 'كلمات المرور غير متطابقة';
+                                                              }
+                                                              if (value
+                                                                  .isEmpty) {
+                                                                return kPassNullError;
+                                                              }
+                                                            },
+                                                            label:
+                                                                'تأكيد كلمة المرور',
+                                                            hint:
+                                                                "أعد إدخال الكلمة الجديدة",
+                                                          ),
+                                                          SizedBox(
+                                                            height:
+                                                                getProportionateScreenHeight(
+                                                                    20),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
+                                                    onConfirm: () {
+                                                      if (_formKey.currentState!
+                                                          .validate()) {
+                                                        _formKey.currentState!
+                                                            .save();
+                                                        print('Its work');
+                                                      }
+                                                    });
+                                              },
+                                              style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all(
+                                                        kPrimaryColor),
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                // ignore: prefer_const_literals_to_create_immutables
+                                                children: [
+                                                  const Icon(
+                                                    Icons.lock,
+                                                    color: Colors.white,
                                                   ),
-                                                  child: Text(
-                                                    'إالغاء الأمر',
+                                                  SizedBox(width: 5),
+                                                  const Text(
+                                                    'تعديل كمة المرور',
                                                     style: TextStyle(
-                                                      color:
-                                                          Colors.grey.shade800,
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                      color: Colors.white,
                                                     ),
                                                   ),
-                                                ),
-                                              );
-                                            },
-                                            style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStateProperty.all(
-                                                      Colors.redAccent),
+                                                ],
+                                              ),
                                             ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                Icon(
-                                                  Icons.delete_outline,
-                                                  color: Colors.white,
-                                                ),
-                                                SizedBox(width: 5),
-                                                Text(
-                                                  'حذف المستخدم',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              Get.back();
-                                              Get.defaultDialog(
-                                                  textConfirm: 'تأكيد',
-                                                  title:
-                                                      'تغيير كلمة مرور المستخدم',
-                                                  textCancel: 'إالغاء',
-                                                  content: Form(
-                                                    key: _formKey,
-                                                    child: Column(
-                                                      children: [
-                                                        NewPasswordFeild(
-                                                          onChange: (value) {
-                                                            _controller
-                                                                    .oldPassword =
-                                                                value;
-                                                          },
-                                                          validator: (value) {
-                                                            if (value.isEmpty) {
-                                                              return kPassNullError;
-                                                            }
-                                                          },
-                                                          label:
-                                                              'كلمة المرور القديمة',
-                                                          hint:
-                                                              'أدخل كلمة المرور القديمة',
-                                                        ),
-                                                        SizedBox(
-                                                          height:
-                                                              getProportionateScreenHeight(
-                                                                  20),
-                                                        ),
-                                                        NewPasswordFeild(
-                                                          onChange: (value) {
-                                                            _controller
-                                                                    .newPassword =
-                                                                value;
-                                                          },
-                                                          validator: (value) {
-                                                            if (value.isEmpty) {
-                                                              return kPassNullError;
-                                                            }
-                                                          },
-                                                          label:
-                                                              'كلمة المرور الجديدة',
-                                                          hint:
-                                                              'أدخل كلمة المرور الجديدة',
-                                                        ),
-                                                        SizedBox(
-                                                          height:
-                                                              getProportionateScreenHeight(
-                                                                  20),
-                                                        ),
-                                                        NewPasswordFeild(
-                                                          onChange: (value) {},
-                                                          validator: (value) {
-                                                            if (value !=
-                                                                _controller
-                                                                    .oldPassword) {
-                                                              return 'كلمات المرور غير متطابقة';
-                                                            }
-                                                            if (value.isEmpty) {
-                                                              return kPassNullError;
-                                                            }
-                                                          },
-                                                          label:
-                                                              'تأكيد كلمة المرور',
-                                                          hint:
-                                                              "أعد إدخال الكلمة الجديدة",
-                                                        ),
-                                                        SizedBox(
-                                                          height:
-                                                              getProportionateScreenHeight(
-                                                                  20),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  onConfirm: () {
-                                                    if (_formKey.currentState!
-                                                        .validate()) {
-                                                      _formKey.currentState!
-                                                          .save();
-                                                      print('Its work');
-                                                    }
-                                                  });
-                                            },
-                                            style: ButtonStyle(
-                                              backgroundColor:
-                                                  MaterialStateProperty.all(
-                                                      kPrimaryColor),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              // ignore: prefer_const_literals_to_create_immutables
-                                              children: [
-                                                const Icon(
-                                                  Icons.lock,
-                                                  color: Colors.white,
-                                                ),
-                                                SizedBox(width: 5),
-                                                const Text(
-                                                  'تعديل كمة المرور',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ));
+                                },
+                                child: ListTile(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  tileColor: kPrimaryColor.withOpacity(0.2),
+                                  leading: Container(
+                                    height: getProportionateScreenHeight(30),
+                                    width: getProportionateScreenWidth(30),
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.person,
+                                        size: 40,
                                       ),
                                     ),
                                   ),
-                                ));
-                              },
-                              child: ListTile(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                tileColor: kPrimaryColor.withOpacity(0.2),
-                                leading: Container(
-                                  height: getProportionateScreenHeight(30),
-                                  width: getProportionateScreenWidth(30),
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
+                                  title: Text(
+                                    item.name_market.toString(),
                                   ),
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.person,
-                                      size: 40,
-                                    ),
+                                  subtitle: Text(
+                                    item.name_user.toString(),
                                   ),
-                                ),
-                                title: Text(
-                                  item.name_market.toString(),
-                                ),
-                                subtitle: Text(
-                                  item.name_user.toString(),
                                 ),
                               ),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                  );
+                            );
+                          },
+                        );
+                      },
+                    );
+                  } else {
+                    return Center(child: Text('لا يوجد مستخدمين'));
+                  }
                 }
               },
             ),

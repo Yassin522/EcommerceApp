@@ -27,7 +27,10 @@ class SearchServices {
               (item) => Product.fromJson(item),
             )
             .toList();
-
+        print('what we got is \\\\\\\\\\\\\\\\\\');
+        products.forEach((element) {
+          print(element);
+        });
         return products;
       } else {
         return null;

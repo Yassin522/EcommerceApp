@@ -9,6 +9,5 @@ class DetailsBinding extends Bindings {
     // TODO: implement dependencies
     Get.lazyPut(() => DetailController());
     Get.lazyPut(() => EditProductController());
-    Get.lazyPut(() => EditProductController);
   }
 }

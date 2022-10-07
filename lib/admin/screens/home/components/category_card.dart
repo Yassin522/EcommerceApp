@@ -26,9 +26,62 @@ class SpecialOfferCard extends StatelessWidget {
       padding: EdgeInsets.only(left: getProportionateScreenWidth(20)),
       child: GestureDetector(
         onTap: press,
+        onLongPress: () {
+          print("ok");
+          Get.defaultDialog(
+              backgroundColor: Colors.white,
+              title: 'هل تريد بالتاكيد الحذف؟',
+              contentPadding: EdgeInsets.all(20),
+              content: GetBuilder(
+                  init: AdminHomeController(),
+                  builder: (_) {
+                    return Column(mainAxisSize: MainAxisSize.min, children: [
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            InkWell(
+                              onTap: () async {
+                                c.deletecategory(id);
+
+                                Get.back();
+                              },
+                              child: Container(
+                                height: 40,
+                                width: 110,
+                                color: kPrimaryColor,
+                                child: Center(
+                                  child: Text(
+                                    'تاكيد',
+                                  ),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: Container(
+                                height: 40,
+                                width: 110,
+                                color: Colors.white,
+                                child: Center(
+                                  child: Text(
+                                    'الغاء',
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ]);
+                  }),
+              radius: 10.0);
+        },
         child: SizedBox(
           width: getProportionateScreenWidth(242),
-          height: getProportionateScreenWidth(100),
+          height: getProportionateScreenHeight(120),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Stack(
@@ -50,89 +103,38 @@ class SpecialOfferCard extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(15.0),
-                    vertical: getProportionateScreenWidth(10),
+                    horizontal: getProportionateScreenWidth(5.0),
+                    vertical: getProportionateScreenHeight(10),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text.rich(
-                        TextSpan(
-                          style: TextStyle(color: Colors.white),
-                          children: [
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      height: getProportionateScreenHeight(120) * .3,
+                      width: getProportionateScreenWidth(242),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Center(
+                          child: Text.rich(
                             TextSpan(
-                              text: "$category\n",
-                              style: TextStyle(
-                                fontSize: getProportionateScreenWidth(18),
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: TextStyle(color: Colors.grey.shade800),
+                              children: [
+                                TextSpan(
+                                  text: "$category\n",
+                                  style: TextStyle(
+                                    fontSize: getProportionateScreenWidth(18),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+                            textAlign: TextAlign.right,
+                          ),
                         ),
                       ),
-                      IconButton(
-                          onPressed: () {
-                            print("ok");
-                            Get.defaultDialog(
-                                backgroundColor: Colors.white,
-                                title: 'هل تريد بالتاكيد الحذف؟',
-                                contentPadding: EdgeInsets.all(20),
-                                content: GetBuilder(
-                                    init: AdminHomeController(),
-                                    builder: (_) {
-                                      return Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Center(
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: [
-                                                  InkWell(
-                                                    onTap: () async {
-                                                      c.deletecategory(id);
-
-                                                      Get.back();
-                                                    },
-                                                    child: Container(
-                                                      height: 40,
-                                                      width: 110,
-                                                      color: kPrimaryColor,
-                                                      child: Center(
-                                                        child: Text(
-                                                          'تاكيد',
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  InkWell(
-                                                    onTap: () {
-                                                      Get.back();
-                                                    },
-                                                    child: Container(
-                                                      height: 40,
-                                                      width: 110,
-                                                      color: Colors.white,
-                                                      child: Center(
-                                                        child: Text(
-                                                          'الغاء',
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ]);
-                                    }),
-                                radius: 10.0);
-                          },
-                          icon: Icon(
-                            Icons.delete,
-                            color: Colors.red.shade900,
-                          )),
-                    ],
+                    ),
                   ),
                 ),
               ],

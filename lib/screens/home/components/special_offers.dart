@@ -82,7 +82,7 @@ class SpecialOfferCard extends StatelessWidget {
         onTap: press,
         child: SizedBox(
           width: getProportionateScreenWidth(242),
-          height: getProportionateScreenWidth(100),
+          height: getProportionateScreenHeight(120),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Stack(
@@ -104,21 +104,37 @@ class SpecialOfferCard extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(15.0),
-                    vertical: getProportionateScreenWidth(10),
+                    horizontal: getProportionateScreenWidth(5.0),
+                    vertical: getProportionateScreenHeight(10),
                   ),
-                  child: Text.rich(
-                    TextSpan(
-                      style: TextStyle(color: Colors.white),
-                      children: [
-                        TextSpan(
-                          text: "$category\n",
-                          style: TextStyle(
-                            fontSize: getProportionateScreenWidth(18),
-                            fontWeight: FontWeight.bold,
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      height: getProportionateScreenHeight(120) * .3,
+                      width: getProportionateScreenWidth(242),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Center(
+                          child: Text.rich(
+                            TextSpan(
+                              style: TextStyle(color: Colors.grey.shade800),
+                              children: [
+                                TextSpan(
+                                  text: "$category\n",
+                                  style: TextStyle(
+                                    fontSize: getProportionateScreenWidth(18),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            textAlign: TextAlign.right,
                           ),
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
