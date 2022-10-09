@@ -58,6 +58,16 @@ class ProductDescription extends StatelessWidget {
             style: Theme.of(context).textTheme.headline6,
           ),
         ),
+        SizedBox(
+          height: getProportionateScreenHeight(12),
+        ),
+        Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          child: Text('${product.price.toString()} ل.س',
+              style:
+                  TextStyle(fontWeight: FontWeight.w600, color: kPrimaryColor)),
+        ),
         Align(
           alignment: Alignment.centerRight,
           child: Container(

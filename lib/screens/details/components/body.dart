@@ -65,7 +65,7 @@ class Body extends StatelessWidget {
                                         Cart(
                                           numOfItem: c.numbersofProducts.value,
                                           name: product.name!,
-                                          price: c.initprice.value,
+                                          price: product.price!,
                                           product_id: c
                                               .productImages[
                                                   c.selectedImage.value]

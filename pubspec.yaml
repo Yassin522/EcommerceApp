@@ -52,7 +52,8 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icons/Sandy_Bus-26_Single-01.jpg"
+  image_path: "assets/icons/90eefd0085b946a0af184d0c05843dd2 (2).png"
+  min_sdk_android: 21
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
