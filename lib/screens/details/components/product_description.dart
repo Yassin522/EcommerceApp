@@ -14,6 +14,7 @@ import 'package:get/get.dart';
 
 import '../../../admin/screens/add product/components/Image_pick.dart';
 import '../../../admin/screens/edit product/components/color_image.dart';
+import '../../../admin/screens/home/home_controller.dart';
 import '../../../admin/screens/search/product_for_category.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -175,6 +176,8 @@ class ProductActionButtons extends StatelessWidget {
                     await _editController.deleteProduct(product!.id.toString());
                 if (res == true) {
                   Get.back();
+                  var c = Get.find<AdminHomeController>();
+                  c.update();
                   EasyLoading.showSuccess('تم حذف المنتج');
                 } else {
                   EasyLoading.showError(

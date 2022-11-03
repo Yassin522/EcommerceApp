@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
+import '../home/home_controller.dart';
+
 class AddProductScreen extends StatelessWidget {
   AddProductScreen({
     Key? key,
@@ -25,6 +27,8 @@ class AddProductScreen extends StatelessWidget {
           color: Colors.white,
           onPressed: () {
             Get.back();
+            var c = Get.find<AdminHomeController>();
+            c.update();
           },
         ),
         title: Text('إضافة منتج جديد'),
@@ -208,7 +212,6 @@ class AddProductScreen extends StatelessWidget {
                           }
                           if (_formKey.currentState!.validate() && state) {
                             _formKey.currentState!.save();
-                            print('ok');
                             EasyLoading.show(dismissOnTap: true);
                             var res = await _controller.addPoduct();
                             if (res == true) {

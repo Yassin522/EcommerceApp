@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'size_config.dart';
 
-String baseUrl = 'http://192.168.43.86:8000/api/';
-String imagebaseUrl = 'http://192.168.43.86:8000';
-//192.168.43.171
+String baseUrl = 'http://192.168.43.171:8000/api/';
+String imagebaseUrl = 'http://192.168.43.171:8000';
+//https://192.168.43.171:8000/api/
 // No host specified in URI http:/192.168.43.171:8000/api/category/show
 
 const kPrimaryColor = Color.fromARGB(255, 33, 214, 124);

@@ -2,7 +2,7 @@ import 'package:ecommerce/admin/screens/home/home_controller.dart';
 import 'package:ecommerce/admin/screens/search/search_screen.dart';
 import 'package:ecommerce/routes/app_routes.dart';
 import 'package:ecommerce/screens/home/components/icon_btn_with_counter.dart';
-
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -76,6 +76,9 @@ class Body extends StatelessWidget {
                     children: [
                       DrawerOption(
                         label: 'معلومات المتجر',
+                        press: () {
+                          Get.toNamed(AppPages.settings);
+                        },
                       ),
                       DrawerOption(
                         label: 'طلباتي',
