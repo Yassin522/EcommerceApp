@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
       initialRoute: initPage,
       getPages: AppPages.routes,
       builder: EasyLoading.init(),
+
     );
   }
 }
