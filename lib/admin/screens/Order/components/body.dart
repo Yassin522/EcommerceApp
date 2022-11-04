@@ -41,7 +41,7 @@ class _BodyState extends State<Body> {
                           )
                         : SizedBox(
                             height: getProportionateScreenWidth(
-                                SizeConfig.screenHeight * .9),
+                                SizeConfig.screenHeight * .78),
                             child: ListView.builder(
                                 itemCount: c.orders.length,
                                 itemBuilder: (context, index) {

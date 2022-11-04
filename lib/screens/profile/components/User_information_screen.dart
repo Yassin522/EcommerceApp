@@ -7,7 +7,9 @@ import 'package:get/get.dart';
 
 class UserProfileScreen extends StatelessWidget {
   UserProfileScreen({Key? key}) : super(key: key);
+
   var _controller = Get.find<ProfileController>();
+
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {

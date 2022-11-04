@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
 import 'package:ecommerce/screens/sign_in/Models/global_user_info.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
