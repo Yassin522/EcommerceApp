@@ -1,4 +1,5 @@
 import 'package:ecommerce/models/Cart.dart';
+import 'package:ecommerce/screens/sign_in/Models/global_user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce/components/default_button.dart';
 import 'package:ecommerce/models/Product.dart';
@@ -40,46 +41,51 @@ class Body extends StatelessWidget {
                     TopRoundedContainer(
                       color: Colors.white,
                       child: Padding(
-                          padding: EdgeInsets.only(
-                            left: SizeConfig.screenWidth * 0.15,
-                            right: SizeConfig.screenWidth * 0.15,
-                            bottom: getProportionateScreenWidth(40),
-                            top: getProportionateScreenWidth(15),
-                          ),
-                          child: GetBuilder(
-                              init: DetailController(),
-                              builder: (_) {
-                                return DefaultButton(
-                                  text: "اضافة للسلة",
-                                  press: () {
-                                    if (c.ok.value == true) {
-                                      print("adddddddddddd");
-                                      print(c.numbersofProducts.value);
-                                      print(c.initprice.value);
-                                      print(c.selectedImage.value);
-                                      print(c
-                                          .productImages[c.selectedImage.value]
-                                          .productColorId!);
+                        padding: EdgeInsets.only(
+                          left: SizeConfig.screenWidth * 0.15,
+                          right: SizeConfig.screenWidth * 0.15,
+                          bottom: getProportionateScreenWidth(40),
+                          top: getProportionateScreenWidth(15),
+                        ),
+                        child: GlobalUserInfo.user!.role_id == '2'
+                            ? GetBuilder(
+                                init: DetailController(),
+                                builder: (_) {
+                                  return DefaultButton(
+                                    text: "اضافة للسلة",
+                                    press: () {
+                                      if (c.ok.value == true) {
+                                        print("adddddddddddd");
+                                        print(c.numbersofProducts.value);
+                                        print(c.initprice.value);
+                                        print(c.selectedImage.value);
+                                        print(c
+                                            .productImages[
+                                                c.selectedImage.value]
+                                            .productColorId!);
 
-                                      myItems.add(
-                                        Cart(
-                                          numOfItem: c.numbersofProducts.value,
-                                          name: product.name!,
-                                          price: product.price!,
-                                          product_id: c
-                                              .productImages[
-                                                  c.selectedImage.value]
-                                              .productColorId!,
-                                          image: c
-                                              .productImages[
-                                                  c.selectedImage.value]
-                                              .image!,
-                                        ),
-                                      );
-                                    }
-                                  },
-                                );
-                              })),
+                                        myItems.add(
+                                          Cart(
+                                            numOfItem:
+                                                c.numbersofProducts.value,
+                                            name: product.name!,
+                                            price: product.price!,
+                                            product_id: c
+                                                .productImages[
+                                                    c.selectedImage.value]
+                                                .productColorId!,
+                                            image: c
+                                                .productImages[
+                                                    c.selectedImage.value]
+                                                .image!,
+                                          ),
+                                        );
+                                      }
+                                    },
+                                  );
+                                })
+                            : SizedBox(height: 1),
+                      ),
                     ),
                   ],
                 ),

@@ -1,3 +1,4 @@
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/state_manager.dart';
 import 'package:ecommerce/models/Cart.dart';
 import 'package:ecommerce/models/Product.dart';
@@ -30,6 +31,12 @@ class CartController extends GetxController {
     ok.value = await cartservice.addOrder(allCart);
     print("tmmm");
     print(ok.value);
+    if (ok.value == true) {
+      EasyLoading.showSuccess('تم ارسال الطلبية بنجاح');
+    }
+    else{
+      EasyLoading.showError("حدث خطا بارسال الطلبية");
+    }
   }
 
   @override

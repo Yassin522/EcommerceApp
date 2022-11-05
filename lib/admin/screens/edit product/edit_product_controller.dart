@@ -133,6 +133,8 @@ class EditProductController extends GetxController {
 
   deleteColor(String id) async {
     var res = editServ.deleteColor(id);
+
+
     return res;
   }
 

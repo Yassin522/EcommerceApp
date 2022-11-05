@@ -462,11 +462,19 @@ class ProductActionButtons extends StatelessWidget {
                     .toString();
                 print('idddddddddddddddddddddddddddd' + id);
                 EasyLoading.show(dismissOnTap: true);
+                print("fffff");
                 var res = await _editController.deleteColor(id);
+                print("bbbbbbb");
                 det.update();
+                print("lllll");
                 if (res == true) {
+                  print("mmmmmmmmm");
+                  Get.offNamed(AppPages.adminhome);
                   EasyLoading.showSuccess('تم حذف النكهة بنجاح');
+
+                  print("sssssssss");
                 } else {
+                  print("nnnnnnnnnnn");
                   EasyLoading.showError('حدث خطأ ما الرجاء المحاولة مرة أخرى');
                 }
               },

@@ -37,13 +37,20 @@ class AdminOrderCard extends StatelessWidget {
                         }
 
                         return c.allOrders.isEmpty
-                            ? const SizedBox(
-                                height: 10,
-                                child: Center(
-                                  child: Text(
-                                    'لا يوجد تفاصيل',
+                            ? Column(
+                                children: [
+                                  SizedBox(
+                                    height: 25,
+                                    child: Center(
+                                      child: Text(
+                                        'لا يوجد تفاصيل',
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                ],
                               )
                             : SizedBox(
                                 height: Get.height * 0.7,

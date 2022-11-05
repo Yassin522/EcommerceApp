@@ -81,7 +81,7 @@ class SettingsScreen extends StatelessWidget {
                                         color: kPrimaryColor.withOpacity(0.30),
                                         image: DecorationImage(
                                           image: NetworkImage(
-                                              '$imagebaseUrl/${_controller.image}'),
+                                              '$imagebaseUrl/upload/category/${_controller.image}'),
                                           fit: BoxFit.scaleDown,
                                         ),
                                       ),

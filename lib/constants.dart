@@ -5,8 +5,8 @@ import 'size_config.dart';
 
 //192.168.43.171
 
-String baseUrl = 'http://192.168.43.171:8000/api/';
-String imagebaseUrl = 'http://192.168.43.171:8000';
+String baseUrl = 'http://192.168.43.86:8000/api/';
+String imagebaseUrl = 'http://192.168.43.86:8000';
 //https://192.168.43.171:8000/api/
 // No host specified in URI http:/192.168.43.171:8000/api/category/show
 

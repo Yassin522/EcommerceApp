@@ -45,12 +45,14 @@ class AdminOrderController extends GetxController {
           created_at: orderdetails[i].created_at,
           updated_at: orderdetails[i].updated_at,
           product_price_now: orderdetails[i].product_price_now,
-      
           image: colorimage));
     }
 
     print(allOrders[0].id);
     print(allOrders[0].image);
+    print(allOrders[0].current_price);
+    print("mnor");
+    print(allOrders[0].product_price_now);
   }
 
   acceptorder(int id) async {

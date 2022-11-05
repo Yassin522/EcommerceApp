@@ -12,14 +12,13 @@ class OrderDetailsCard extends StatelessWidget {
   }) : super(key: key);
 
   final OrderDetail order;
- 
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         SizedBox(
-          width: 60,
+          width: 70,
           child: AspectRatio(
             aspectRatio: 0.88,
             child: Container(
@@ -40,18 +39,23 @@ class OrderDetailsCard extends StatelessWidget {
           children: [
             Text(
               '${order.quantity.toString()} العدد',
-              style: TextStyle(color: Colors.black, fontSize: 16),
+              style: TextStyle(color: Colors.black, fontSize: 12),
               maxLines: 2,
             ),
             SizedBox(height: 5),
             Text(
-              order.current_price.toString(),
-              style: TextStyle(color: Colors.black, fontSize: 16),
+              '${order.current_price.toString()} السعر',
+              style: TextStyle(color: Colors.black, fontSize: 12),
+              maxLines: 2,
+            ),
+            SizedBox(height: 5),
+            Text(
+              '${order.product_price_now.toString()} : السعر الحالي ',
+              style: TextStyle(color: Colors.black, fontSize: 12),
               maxLines: 2,
             ),
           ],
         ),
-        
       ],
     );
   }
