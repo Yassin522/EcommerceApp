@@ -76,7 +76,6 @@ class OrderSearchScreen extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    String s = '';
     var sug = _controller.orders.value
         .where((element) =>
             element.marketname.toLowerCase().contains(query.toLowerCase()) ||

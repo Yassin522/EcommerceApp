@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:ecommerce/admin/screens/add%20product/components/Image_pick.dart';
 import 'package:ecommerce/admin/screens/app_setting/settings_controller.dart';
 import 'package:ecommerce/admin/screens/search/product_for_category.dart';
+import 'package:ecommerce/screens/sign_in/Models/global_user_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -211,6 +212,7 @@ class SettingInfoCard extends StatelessWidget {
           SizedBox(
             height: getProportionateScreenHeight(75),
             child: TextFormField(
+              enabled: GlobalUserInfo.user!.role_id == '2' ? false : true,
               keyboardType: inputType ?? TextInputType.name,
               autovalidateMode: AutovalidateMode.always,
               onSaved: (_) {

@@ -74,6 +74,9 @@ class Body extends StatelessWidget {
                     children: [
                       DrawerOption(
                         label: 'معلومات المتجر',
+                        press: () {
+                          Get.toNamed(AppPages.settings);
+                        },
                       ),
                       DrawerOption(
                         label: 'طلباتي',
@@ -85,7 +88,7 @@ class Body extends StatelessWidget {
                           EasyLoading.show(dismissOnTap: true);
                           var result = await _controller.logout();
                           if (result == true) {
-                            EasyLoading.showSuccess('Done');
+                            EasyLoading.showSuccess('تم');
                             GetStorage().erase();
                             Get.toNamed(AppPages.signin);
                           } else {

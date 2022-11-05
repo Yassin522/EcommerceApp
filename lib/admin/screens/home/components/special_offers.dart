@@ -130,7 +130,7 @@ class SpecialOffers extends StatelessWidget {
                                                   if (c.imagefile.value.path ==
                                                       'nothing') {
                                                     c.showSnackBar(
-                                                        'Please select a file',
+                                                        'الرجاء اختيار ملف',
                                                         context);
                                                   } else {
                                                     c.addcategory();
@@ -144,7 +144,7 @@ class SpecialOffers extends StatelessWidget {
                                                   color: kPrimaryColor,
                                                   child: Center(
                                                     child: Text(
-                                                      'submit',
+                                                      'اضافة',
                                                     ),
                                                   ),
                                                 ),
@@ -159,7 +159,7 @@ class SpecialOffers extends StatelessWidget {
                                                   color: Colors.white,
                                                   child: Center(
                                                     child: Text(
-                                                      'cancel',
+                                                      'إالغاء',
                                                     ),
                                                   ),
                                                 ),

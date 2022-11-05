@@ -15,15 +15,20 @@ class CartController extends GetxController {
   var totalPrice = 0.0.obs;
   List<Cart> allitems = [];
   RxBool ok = false.obs;
+  var myItems = [];
 
   var cartservice = CartService();
 
-  GetTotalPrice() {
+  GetTotalPrice() async {
     totalPrice.value = 0.0;
-    for (var i = 0; i < myItems.length; i++) {
+    for (var i in myItems) {
       totalPrice.value += myItems[i].price * myItems[i].numOfItem;
     }
+    update();
+  }
 
+  removeItem(int index) {
+    myItems.removeAt(index);
     update();
   }
 
@@ -33,8 +38,7 @@ class CartController extends GetxController {
     print(ok.value);
     if (ok.value == true) {
       EasyLoading.showSuccess('تم ارسال الطلبية بنجاح');
-    }
-    else{
+    } else {
       EasyLoading.showError("حدث خطا بارسال الطلبية");
     }
   }

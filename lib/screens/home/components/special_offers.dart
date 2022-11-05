@@ -1,4 +1,5 @@
 import 'package:ecommerce/constants.dart';
+import 'package:ecommerce/screens/search/product_for_category.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,7 +34,7 @@ class SpecialOffers extends StatelessWidget {
                     future: controller.loadCategories(),
                     builder: ((context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: Text('Loading...'));
+                        return LoadingWidget();
                       }
 
                       return controller.categories.isEmpty
@@ -41,7 +42,7 @@ class SpecialOffers extends StatelessWidget {
                               height: 50,
                               child: Center(
                                 child: Text(
-                                  'NO Categories',
+                                  'لا يوجد تصنيفات',
                                 ),
                               ),
                             )

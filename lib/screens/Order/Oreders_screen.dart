@@ -10,9 +10,12 @@ class OrdersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Body(),
-      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.oreders),
+    return SafeArea(
+      child: Scaffold(
+        body: Body(),
+        bottomNavigationBar:
+            CustomBottomNavBar(selectedMenu: MenuState.oreders),
+      ),
     );
   }
 }

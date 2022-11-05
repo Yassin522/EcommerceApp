@@ -56,7 +56,7 @@ class Body extends StatelessWidget {
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
-                              'Name',
+                              'اسم التطبيق',
                               style: TextStyle(
                                 color: kPrimaryColor,
                                 fontSize: 25,
@@ -82,6 +82,9 @@ class Body extends StatelessWidget {
                       ),
                       DrawerOption(
                         label: 'طلباتي',
+                        press: () {
+                          Get.toNamed(AppPages.orderdetails);
+                        },
                       ),
                       DrawerOption(
                         label: 'تسجيل الخروج',
@@ -98,9 +101,6 @@ class Body extends StatelessWidget {
                                 'هناك خطأ ما, الرجاء الحاولة مرة أخرى');
                           }
                         },
-                      ),
-                      DrawerOption(
-                        label: 'معلومات التطبيق',
                       ),
                     ],
                   ),

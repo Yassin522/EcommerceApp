@@ -46,7 +46,7 @@ class PopularProducts extends StatelessWidget {
                 future: _controller.loadProducts(),
                 builder: ((context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return LoadingWidget();
+                    return const LoadingWidget();
                   }
                   return _controller.productss.isEmpty
                       ? const SizedBox(

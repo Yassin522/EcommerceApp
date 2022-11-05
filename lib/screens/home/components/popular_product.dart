@@ -1,3 +1,4 @@
+import 'package:ecommerce/admin/screens/search/product_for_category.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ecommerce/components/product_card.dart';
@@ -26,7 +27,7 @@ class PopularProducts extends StatelessWidget {
                 future: c.loadProducts(),
                 builder: ((context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: Text('Loading...'));
+                    return LoadingWidget();
                   }
 
                   return c.productss.isEmpty
@@ -54,6 +55,7 @@ class PopularProducts extends StatelessWidget {
         );*/
 
                       GridView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           itemCount: c.productss.length,

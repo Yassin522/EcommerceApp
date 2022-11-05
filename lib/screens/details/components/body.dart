@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce/components/default_button.dart';
 import 'package:ecommerce/models/Product.dart';
 import 'package:ecommerce/size_config.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
 import '../../cart/cartController.dart';
@@ -19,7 +20,7 @@ class Body extends StatelessWidget {
 
   Body({Key? key, required this.product}) : super(key: key);
   final c = Get.find<DetailController>();
-
+  var _cartController = Get.find<CartController>();
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -64,7 +65,7 @@ class Body extends StatelessWidget {
                                                 c.selectedImage.value]
                                             .productColorId!);
 
-                                        myItems.add(
+                                        _cartController.myItems.add(
                                           Cart(
                                             numOfItem:
                                                 c.numbersofProducts.value,
@@ -80,6 +81,11 @@ class Body extends StatelessWidget {
                                                 .image!,
                                           ),
                                         );
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                          content:
+                                              Text("تم إضافة المنتج للسلة"),
+                                        ));
                                       }
                                     },
                                   );

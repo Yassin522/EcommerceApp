@@ -52,17 +52,6 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(30)),
           buildPasswordFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
-          Align(
-            alignment: Alignment.centerRight,
-            child: GestureDetector(
-              onTap: () =>
-                  Navigator.pushNamed(context, ForgotPasswordScreen.routeName),
-              child: const Text(
-                "نسيت كلمة المرور؟",
-                style: TextStyle(decoration: TextDecoration.underline),
-              ),
-            ),
-          ),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
@@ -79,7 +68,7 @@ class _SignFormState extends State<SignForm> {
                 if (status == null) {
                   EasyLoading.showError('هناك خطأ ما الرجاء المحاوة مجدداً');
                 } else {
-                  EasyLoading.showSuccess('Welcome!');
+                  EasyLoading.showSuccess('مرحباً بك مجدداً');
                   var role_id = GetStorage().read('role_id');
                   if (role_id == '1') {
                     Get.toNamed(AppPages.adminhome);
