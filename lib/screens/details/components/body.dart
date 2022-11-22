@@ -20,7 +20,7 @@ class Body extends StatelessWidget {
 
   Body({Key? key, required this.product}) : super(key: key);
   final c = Get.find<DetailController>();
-  var _cartController = Get.find<CartController>();
+  var cartController = Get.find<CartController>();
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -65,7 +65,7 @@ class Body extends StatelessWidget {
                                                 c.selectedImage.value]
                                             .productColorId!);
 
-                                        _cartController.myItems.add(
+                                        myItems.add(
                                           Cart(
                                             numOfItem:
                                                 c.numbersofProducts.value,
@@ -81,6 +81,7 @@ class Body extends StatelessWidget {
                                                 .image!,
                                           ),
                                         );
+                                       
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(SnackBar(
                                           content:

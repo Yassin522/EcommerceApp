@@ -9,7 +9,7 @@ import '../../../size_config.dart';
 import '../cart_screen.dart';
 import 'cart_card.dart';
 
-var _controller = Get.put(CartController());
+var _controller = Get.find<CartController>();
 
 class Body extends StatelessWidget {
   @override
@@ -22,7 +22,7 @@ class Body extends StatelessWidget {
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: Column(children: [
-            _controller.myItems.length != 0
+            myItems.length != 0
                 ? GetBuilder(
                     init: CartController(),
                     builder: (_) {

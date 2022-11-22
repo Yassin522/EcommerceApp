@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:ecommerce/models/total_cost.dart';
 import 'package:ecommerce/screens/sign_in/Models/global_user_info.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -40,6 +41,8 @@ class CartService {
 
       print(response.statusCode);
       print(response.body);
+      var res = jsonDecode(response.body);
+      print("rrrrrrrrrrrrrr");
       if (response.statusCode == 200) {
         return true;
       }
@@ -48,5 +51,22 @@ class CartService {
       print(e);
       return false;
     }
+  }
+
+  checkTotal() async {
+    var url = Uri.parse(baseUrl + 'setting/cost/user');
+    var response = await http.get(url, headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+    Map<String, dynamic> json;
+
+    var res = jsonDecode(response.body);
+    var total = res['data'][0]['total_cost'];
+
+    print("totalllllll");
+    print(total);
+    return total;
   }
 }

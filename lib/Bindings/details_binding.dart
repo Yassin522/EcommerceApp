@@ -12,7 +12,7 @@ class DetailsBinding extends Bindings {
     Get.lazyPut(() => DetailController());
     Get.lazyPut(() => EditProductController());
     if (GlobalUserInfo.user!.role_id == '2') {
-      Get.lazyPut(() => CartController());
+      Get.lazyPut(() => CartController(), fenix: true);
     }
   }
 }

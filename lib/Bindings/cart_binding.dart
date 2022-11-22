@@ -6,6 +6,7 @@ class CartBinding extends Bindings {
   @override
   void dependencies() {
     // TODO: implement dependencies
-    Get.lazyPut(() => CartController(), fenix: true);
+   
+    Get.lazyPut(() => CartController(), fenix: true,);
   }
 }

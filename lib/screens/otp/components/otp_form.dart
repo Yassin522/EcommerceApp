@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ecommerce/components/default_button.dart';
 import 'package:ecommerce/size_config.dart';
+import 'package:get/get.dart';
 
 import '../../../constants.dart';
+import '../../../routes/app_routes.dart';
 
 class OtpForm extends StatefulWidget {
   const OtpForm({
@@ -12,6 +14,8 @@ class OtpForm extends StatefulWidget {
   @override
   _OtpFormState createState() => _OtpFormState();
 }
+
+late String A, B, C, D;
 
 class _OtpFormState extends State<OtpForm> {
   FocusNode? pin2FocusNode;
@@ -59,6 +63,10 @@ class _OtpFormState extends State<OtpForm> {
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
                   onChanged: (value) {
+                    setState(() {
+                      A = value;
+                      print(A);
+                    });
                     nextField(value, pin2FocusNode);
                   },
                 ),
@@ -66,26 +74,34 @@ class _OtpFormState extends State<OtpForm> {
               SizedBox(
                 width: getProportionateScreenWidth(60),
                 child: TextFormField(
-                  focusNode: pin2FocusNode,
-                  obscureText: true,
-                  style: TextStyle(fontSize: 24),
-                  keyboardType: TextInputType.number,
-                  textAlign: TextAlign.center,
-                  decoration: otpInputDecoration,
-                  onChanged: (value) => nextField(value, pin3FocusNode),
-                ),
+                    focusNode: pin2FocusNode,
+                    obscureText: true,
+                    style: TextStyle(fontSize: 24),
+                    keyboardType: TextInputType.number,
+                    textAlign: TextAlign.center,
+                    decoration: otpInputDecoration,
+                    onChanged: (value) {
+                      setState(() {
+                        B = value;
+                      });
+                      nextField(value, pin3FocusNode);
+                    }),
               ),
               SizedBox(
                 width: getProportionateScreenWidth(60),
                 child: TextFormField(
-                  focusNode: pin3FocusNode,
-                  obscureText: true,
-                  style: TextStyle(fontSize: 24),
-                  keyboardType: TextInputType.number,
-                  textAlign: TextAlign.center,
-                  decoration: otpInputDecoration,
-                  onChanged: (value) => nextField(value, pin4FocusNode),
-                ),
+                    focusNode: pin3FocusNode,
+                    obscureText: true,
+                    style: TextStyle(fontSize: 24),
+                    keyboardType: TextInputType.number,
+                    textAlign: TextAlign.center,
+                    decoration: otpInputDecoration,
+                    onChanged: (value) {
+                      setState(() {
+                        C = value;
+                      });
+                      nextField(value, pin4FocusNode);
+                    }),
               ),
               SizedBox(
                 width: getProportionateScreenWidth(60),
@@ -98,6 +114,9 @@ class _OtpFormState extends State<OtpForm> {
                   decoration: otpInputDecoration,
                   onChanged: (value) {
                     if (value.length == 1) {
+                      setState(() {
+                        D = value;
+                      });
                       pin4FocusNode!.unfocus();
                       // Then you need to check is the code is correct or not
                     }
@@ -108,8 +127,16 @@ class _OtpFormState extends State<OtpForm> {
           ),
           SizedBox(height: SizeConfig.screenHeight * 0.15),
           DefaultButton(
-            text: "Continue",
-            press: () {},
+            text: "استمرار",
+            press: () {
+              if (verifycode == A + B + C + D) {
+                print("broooooooo");
+
+                Get.offAllNamed(AppPages.signup);
+              } else {
+                showSnackBar("Wrong Code", context);
+              }
+            },
           )
         ],
       ),

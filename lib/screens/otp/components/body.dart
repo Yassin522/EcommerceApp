@@ -16,23 +16,14 @@ class Body extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: SizeConfig.screenHeight * 0.05),
-              Text(
-                "OTP Verification",
-                style: headingStyle,
+              Center(
+                child: Text(
+                  "أدخل الكود لانشاء حساب ",
+                  style: headingStyle,
+                ),
               ),
-              Text("We sent your code to +1 898 860 ***"),
-              buildTimer(),
               OtpForm(),
               SizedBox(height: SizeConfig.screenHeight * 0.1),
-              GestureDetector(
-                onTap: () {
-                  // OTP code resend
-                },
-                child: Text(
-                  "Resend OTP Code",
-                  style: TextStyle(decoration: TextDecoration.underline),
-                ),
-              )
             ],
           ),
         ),

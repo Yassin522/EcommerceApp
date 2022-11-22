@@ -49,7 +49,8 @@ class AdminOrderService {
             'status': '1',
           });
 
-      if (respone.statusCode == 200) {
+     if (respone.statusCode == 200) {
+        print(respone.body);
         return true;
       } else {
         return false;
@@ -103,8 +104,6 @@ class AdminOrderService {
             (item) => OrderDetail.fromJson(item),
           )
           .toList();
-      
-     
 
       return allOrderdetails;
     } catch (e) {

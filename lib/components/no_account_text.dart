@@ -4,6 +4,7 @@ import 'package:ecommerce/routes/app_routes.dart';
 import 'package:ecommerce/screens/sign_up/sign_up_screen.dart';
 
 import '../constants.dart';
+import '../screens/otp/otp_screen.dart';
 import '../size_config.dart';
 
 class NoAccountText extends StatelessWidget {
@@ -17,7 +18,7 @@ class NoAccountText extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         GestureDetector(
-          onTap: () => Get.toNamed(AppPages.signup),
+          onTap: () => Get.to(OtpScreen()),
           child: Text(
             "أنشئ حساب",
             style: TextStyle(

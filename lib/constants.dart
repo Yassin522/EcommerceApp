@@ -4,8 +4,9 @@ import 'size_config.dart';
 
 //192.168.43.171
 
-String baseUrl = 'http://192.168.43.171:8000/api/';
-String imagebaseUrl = 'http://192.168.43.171:8000';
+String baseUrl = 'http://192.168.1.3:8000/api/';
+String imagebaseUrl = 'http://192.168.1.3:8000';
+String verifycode = '0335';
 //https://192.168.43.171:8000/api/
 // No host specified in URI http:/192.168.43.171:8000/api/category/show
 
@@ -68,4 +69,12 @@ Map<String, String> header(String token) {
 catchPrint(e) {
   print('Wleeeeeeeeeeeeeee');
   print(e);
+}
+
+showSnackBar(String content, BuildContext context) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(content),
+    ),
+  );
 }
